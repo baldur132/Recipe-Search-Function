@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" content="text/html" http-equiv="content-type"/>
+        <meta content="your description goes here" name="description"/>
+        <meta name="keywords" content="reicipe data base" />
+        <meta name="author" content="Baldur Siegel" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link type="text/css" rel="stylesheet" href="OneRecipeGrid.css" />
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+        <title>Recipe Database Search</title>
+
+        <script src="../js/jquery-3.1.1.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="errorBar" id="errorBar"></div>
+            <div class="sitetitle">
+                <!--<a href="../Cooking.php"><img style="
+                    float:left; width:90px; padding:0px" src="RecipePictures/logoico.png"></a>-->
+                <h1>Siegel Recipes</h1>
+                <h2>Search Input</h2>
+            </div>
+            <div class="menu">
+                <div class="menuInternal">
+                    <a href="RecipeList.php">List All</a>
+                    <div class="dropdown">
+                        <button>Navigation</button>
+                        <div class="dropContent">
+                            <a href="../Cooking.php">Home</a>
+                            <a href="../MenuDB/DisplayMenuWeek.php">Menu</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content">
+                <div id="search">
+                    <div class="center inputArea">
+                        <h2 class="searchHeader" id="searchHeader">Recipe Database Search</h2>
+                        <h5 class="syntaxHelp">Syntax: Column<b>:</b> query<b>,</b> query <b>and</b> Column<b>:</b> query <b>or</b> query<b>,</b> query <b>and</b> query</h5>
+                        <img style="display: none;" id="loadingIcon" src="RecipePictures/loading.gif" alt="Ldg">
+                        <div class="autocompleteWrapper"><input class="searchFieldText" id="textField" type="text"><div class="autocompleteDrop" id="autocomplete"><ul><span id="autocompleteContent"><li>This is an autocomplete item</li></span></ul></div></div><button class="optionButton" id="optionButton" onclick="revealOptions()">^</button><button class="searchFieldButton" id="textInput" onclick="initiateSearch()">Search</button>
+                    </div>
+                    <div class="center optionPanel" id="optionPanel">
+                        <!--<input type="button" value="Toggle Results" onclick="toggleResultStyle(true)">
+                        <input type="button" value="Toggle Results" onclick="toggleResultStyle(false)">
+                        <input type="button" value="Toggle image display" onclick="setLoadingAnimation(true)">-->
+                        <input type="checkbox" name="searchParameter" class="optionCheck" id="strictParse"><label for="strictParse"><span>Strict Parsing Only</span></label>
+                        <input type="checkbox" name="searchParameter" class="optionCheck" id="forceExact"><label for="forceExact"><span>Force Exact Search</span></label>
+                        <input type="checkbox" name="searchParameter" class="optionCheck" id="carryOrderData"><label for="carryOrderData"><span>Carry Order Data</span></label>
+                    </div>
+                </div>
+                <div class="searchInfo" id="searchInfo">
+                    <div class="searchData" id="searchData">Displaying <span id="resultNum"></span> Recipes: </div>
+                    <div style="display:none" id="searchError"></div>
+                </div>
+                <div id="results" style="display:none">
+                    <div id="recipeData"></div>
+                </div>
+                <div id="error" class="center" style="display:none">
+                    <h3><span id="displayError"></span></h3>
+                </div>
+            </div>
+        </div>
+    <script src="RecipeSearchJS.js"></script>
+    <script src="words_alpha.js"></script>
+    <script>
+        window.onkeypress = function(event) {if (event.key === 'Enter') {document.getElementById('textInput').click();}};
+        $('document').ready(function(){
+            autocomplete(document.getElementById('textField'), wordsEN);
+            changeDisplayStyle(4);
+            readURLnUpdate();
+            document.getElementById("textField").focus();
+        });
+    </script>
+    </body>
+</html>

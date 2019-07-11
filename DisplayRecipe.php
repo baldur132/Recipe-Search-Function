@@ -23,7 +23,6 @@ $MenuDays = GetDaysOnMenu($Recipe->RecipeTitle);
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<link type="text/css" rel="stylesheet" href="RDB.css" media="screen,projection" />
 	<title><?php echo "$Recipe->RecipeTitle"?> - Display Recipe</title>
-	<!--<meta name="google-translate-customization" content="20a55dedff2a61e9-c6bb8ba3a150feb5-g15c2ff799cf8c79f-c"/>-->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 
@@ -210,13 +209,7 @@ $MenuDays = GetDaysOnMenu($Recipe->RecipeTitle);
                 }?>
                 <div class='recipeText' id="translate">
                     <h2>Translate Page to:</h2>
-                    <!--<div id="google_translate_element"></div>
-                        <script type="text/javascript">
-                            function googleTranslateElementInit() {
-                            new google.translate.TranslateElement({pageLanguage: 'de', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, multilanguagePage: true}, 'google_translate_element');
-                        }
-                    </script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-                    -->
+					<h3>Currently Unavailable</h3>
                 </div>
             </div>
             <div class="recipeRightThird">

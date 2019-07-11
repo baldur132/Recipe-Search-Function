@@ -30,9 +30,15 @@ function searchFunction($userQuery, $orderData, $parameters){
             if(preg_match('#(:)#i', $explodeResults[1])){
                 $explodeRemnants = preg_split('#(:)#i', $explodeResults[1]);
                 $explodeRemnants[0] = trim($explodeRemnants[0]);
+                $explodeRemnants[1] = trim($explodeRemnants[1]);
                 if(in_array($explodeRemnants[0], $validColumns)){
-                    $orderData = str_replace(' ', '', $explodeResults[1]);
-                    $resultData[0]['orderError'] = 'none';
+                    if($explodeRemnants[1] === 'DESC' || $explodeRemnants[1] === 'ASC') {
+                        $orderData = str_replace(' ', '', $explodeResults[1]);
+                        $resultData[0]['orderError'] = 'none';
+                    } else {
+                        $resultData[0]['orderError'] = 'Requested Sort Direction Invalid --> ' . $explodeRemnants[1];
+                        $orderData = 'RecipeTitle:ASC';
+                    }
                 } else {
                     $resultData[0]['orderError'] = 'Requested Sort Column Invalid --> ' . $explodeRemnants[0];
                     $orderData = 'RecipeTitle:ASC';

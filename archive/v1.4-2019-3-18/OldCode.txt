@@ -1,0 +1,423 @@
+//If statement structure for search syntax "col: query,param,param and"
+if (strpos($queryInputRaw, ':') !== false || strpos($queryInputRaw, ',') !== false){
+        if(strpos($queryInputRaw, ':') !== false && strpos($queryInputRaw, ',') !== false){
+            $explodeResults = multiexplode(array(',',':'), $queryInputRaw);
+
+        } else if(strpos($queryInputRaw, ':') !== false){
+            $explodeResults = explode(':', $queryInputRaw);
+            $queryInput = str_replace(' ', '', $explodeResults[1]);
+            if (in_array($explodeResults[0], $validColumns)){
+                $columnInput = $explodeResults[0];
+            } else {
+                $tableData[0]['errorBadCol'] = 'true';
+                $queryInput = $explodeResults[1];
+            }
+        } else if(strpos($queryInputRaw, ',') !== false){
+            $explodeResults = explode(',', $queryInputRaw);
+            $queryInput = str_replace(' ', '', $explodeResults[0]);
+            $queryParam[$queryParamCounter] = str_replace(' ', '', $explodeResults[1]);
+            $queryParamCounter++;
+        } else {
+            $queryInput = $queryInputRaw;
+        }
+
+//An attempt at adding a loading icon:
+<div id="loadingIcon" style="display:none"><img src="RecipePictures/loading.gif" alt="Loading" /></div>
+#loadingIcon {display:inline;}
+#loadingIcon img {display: inline; margin-left: auto; margin-right: auto; width: 25px;}
+
+//single query parsing code -> replaced by single/multi parsing code
+
+if ($queryInput == 'false'){
+} else {
+        //standard single query parsing code
+        $tableData[0]['check 5'] = 'standard parsing done';
+        if (strpos($queryInputUnparsed, ':') !== false || strpos($queryInputUnparsed, ';') !== false) {
+            if (strpos($queryInputUnparsed, ':') !== false && strpos($queryInputUnparsed, ';') !== false) {
+                $explodeResults = multiexplode(array(';', ':'), $queryInputUnparsed);
+                $columnResult = str_replace(' ', '', $explodeResults[0]);
+                if (in_array($columnResult, $validColumns)) {
+                    $columnInput = $columnResult;
+                } else {
+                    $tableData[0]['errorBadCol'] = 'true';
+                }
+                $paramCount = count($explodeResults);
+                $paramCount = $paramCount - 1;
+                for ($i = 1; $i < $paramCount; $i++) {
+                    $queryParam[$i] = str_replace(' ', '', $explodeResults[$i]);
+                }
+                $queryInput = str_replace(' ', '', $explodeResults[$paramCount]);
+            } else if (strpos($queryInputUnparsed, ':') !== false) {
+                $explodeResults = explode(':', $queryInputUnparsed);
+                $queryInput = str_replace(' ', '', $explodeResults[1]);
+                $columnResult = str_replace(' ', '', $explodeResults[0]);
+                if (in_array($columnResult, $validColumns)) {
+                    $columnInput = $columnResult;
+                } else {
+                    $tableData[0]['errorBadCol'] = 'true';
+                }
+            } else if (strpos($queryInputUnparsed, ';') !== false) {
+                $explodeResults = explode(';', $queryInputUnparsed);
+                $paramCount = count($explodeResults);
+                $paramCount = $paramCount - 1;
+                for ($i = 0; $i < $paramCount; $i++) {
+                    $queryParam[$i] = str_replace(' ', '', $explodeResults[$i]);
+                }
+                $queryInput = str_replace(' ', '', $explodeResults[$paramCount]);
+            }
+        } else {
+            $queryInput = $queryInputUnparsed;
+        }
+    }
+
+//old multi parsing script
+
+$queryInputUnseparated = $queryInputRaw;
+
+    //separates multiple query elements(','), and multiple queries('and')
+    if (strpos($queryInputUnseparated, ',') || strpos($queryInputUnseparated, 'and')) {
+        if (strpos($queryInputUnseparated, ',') && strpos($queryInputUnseparated, 'and')) {
+        } else if (strpos($queryInputUnseparated, ',')) {
+        } else if (strpos($queryInputUnseparated, 'and')) {
+            $explodeResults = explode('and', $queryInputUnseparated);
+            $queryCount = count($explodeResults);
+            $queryCount = $queryCount - 1;
+            for ($i = 0; $i < $queryCount; $i++) {
+                $queryInputs[$i] = str_replace(' ', '', $explodeResults[$i]);
+            $queryInput = 'false';
+            $tableData[0]['check1'] = 'query separated, # of: '.$queryCount;
+            }
+        }
+    } else {
+        $queryInputUnparsed = $queryInputUnseparated;
+    }
+
+    //edit Search if column parameter is present, i.e.: ('Course: Entree' -> SELECT ... WHERE Course LIKE %Entree%)
+    $validColumns = array('RecipeID', 'RecipeTitle', 'Course', 'URL', 'Source', 'MainIngredient', 'Region', 'Category', 'DateCreated', 'LastOnMenu', 'OnMenu', 'DateModified', 'Ingedients', 'IngredientsContinued', 'Instructions', 'Notes', 'Servings', 'Special', 'Rating', 'PrepTime', 'CookTime', 'Wine', 'Language',);
+    $tableData[0]['errorBadCol'] = false;
+    $tableData[0]['errorBadParam'] = false;
+    $queryCount = count($queryInputs);
+    $queryCount = $queryCount -1;
+    $tableData[0]['check7'] = 'short before large if statement';
+        //run for every individual query, parses into individual arrays for parameters/columns
+    for ($i = 0; $i < $queryCount; $i++) {
+        if (strpos($queryInputs[$i], ':') !== false || strpos($queryInputs[$i], ';') !== false) {
+            if (strpos($queryInputs[$i], ':') !== false && strpos($queryInputs[$i], ';') !== false) {
+                $explodeResults = multiexplode(array(';', ':'), $queryInputs[$i]);
+                $columnResult = str_replace(' ', '', $explodeResults[0]);
+                if (in_array($columnResult, $validColumns)) {
+                    $columnInputs[$i] = $columnResult;
+                } else {
+                    $tableData[0]['errorBadCols'.[$i]] = 'true';
+                }
+                $paramCount = count($explodeResults);
+                $paramCount = $paramCount - 1;
+                for ($i = 1; $i < $paramCount; $i++) {
+                    $queryParam[$i] = str_replace(' ', '', $explodeResults[$i]);
+                }
+                $queryInput = str_replace(' ', '', $explodeResults[$paramCount]);
+                $tableData[0]['check2'] = 'parsed for both : and ;';
+            } else if (strpos($queryInputs[$i], ':') !== false) {
+                $explodeResults = explode(':', $queryInputs[$i]);
+                $queryInput = str_replace(' ', '', $explodeResults[1]);
+                $columnResult = str_replace(' ', '', $explodeResults[0]);
+                if (in_array($columnResult, $validColumns)) {
+                    $columnInput[$i] = $columnResult;
+                } else {
+                    $tableData[0]['errorBadCols'.[$i]] = 'true';
+                }
+                $tableData[0]['check3'] = 'parsed for :';
+            } else if (strpos($queryInputs[$i], ';') !== false) {
+                $explodeResults = explode(';', $queryInputs[$i]);
+                $paramCount = count($explodeResults);
+                $paramCount = $paramCount - 1;
+                for ($i = 0; $i < $paramCount; $i++) {
+                    $queryParam[$i] = str_replace(' ', '', $explodeResults[$i]);
+                }
+                $queryInput = str_replace(' ', '', $explodeResults[$paramCount]);
+                $tableData[0]['check4'] = 'parsed for ;';
+            }
+        } else {
+            $queryInput = $queryInputs[$i];
+        }
+    }
+
+//input cases including strpos
+ && strpos($queryInputRaw, ':') && strpos($queryInputRaw, ',') && strpos($queryInputRaw, ';')
+
+//function based array buffer parsing code (V2)
+$columnInput = array('RecipeTitle');
+    $queryParam = array();
+    $queryiesUnparsed = array();
+    $queryInput = array();
+    $matches = array(false, false, false, false);
+
+    function parseByAnd($stringInput){
+        $explodeResults = explode('and', $stringInput);
+        $queryCount = count($explodeResults);
+        $queryCount = $queryCount - 1;
+        for ($i = 0; $i < $queryCount; $i++) {
+            $queriesUnparsed[$i] = str_replace(' ', '', $explodeResults[$i]);
+        }
+        $headerLen = 2;
+        $voneNum = $queryCount;
+        $reply = array($headerLen -1, $voneNum);
+        for ($i = $headerLen; $i == $headerLen + $voneNum; $i++) {
+            $e = $i - $headerLen;
+            $reply[$i] = $queriesUnparsed[$e];
+        }
+    }
+
+    function parseByColon($stringInput){
+        $validColumns = array('RecipeID', 'RecipeTitle', 'Course', 'URL', 'Source',
+            'MainIngredient', 'Region', 'Category', 'DateCreated', 'LastOnMenu',
+            'OnMenu', 'DateModified', 'Ingedients', 'IngredientsContinued', 'Instructions',
+            'Notes', 'Servings', 'Special', 'Rating', 'PrepTime', 'CookTime', 'Wine', 'Language',);
+        $queryCount = count($stringInput);
+        $queryCount = $queryCount - 1;
+        for ($i = 0; $i < $queryCount; $i++){
+            if (strpos($stringInput[$i], ':')){
+                $explodeResults = explode(':', $stringInput);
+                if (in_array($explodeResults[0], $validColumns)) {
+                    $columnInput[$i] = str_replace(' ', '', $explodeResults[0]);
+                } else {
+                    $tableData[0]['errBadCol'.$i] = 'true';
+                }
+                $queryInput[$i] = str_replace(' ', '', $explodeResults[1]);
+            } else {
+                $columnInput[$i] = 'RecipeTitle';
+            }
+        }
+    }
+
+    function parseBySemiColon ($stringInput){
+        $queryCount = count($stringInput);
+        $queryCount = $queryCount - 1;
+        for ($i = 0; $i < $queryCount; $i++) {
+            if (strpos($stringInput[$i], ';')) {
+                $explodeResults = explode(';', $stringInput[$i]);
+                $paramCount = count($explodeResults);
+                $paramCount = $paramCount -1;
+                for ($e = 0; $e < $paramCount; $e++) {
+                    $queryParam[$i][$e] = str_replace(' ', '', $explodeResults[$i]);
+                }
+                $queryInput = str_replace(' ', '', $explodeResults[$paramCount]);
+            } else {
+                $queryParam[$i] = 'noParams';
+            }
+        }
+    }
+
+    function parseByComma($stringInput){
+        $queryCount = count($stringInput);
+        $queryCount = $queryCount -1;
+        for($i = 0; $i < $queryCount; $i++){
+            if (strpos($stringInput[$i], ',')){
+                $explodeResults = explode(',', $stringInput[$i]);
+                $subQueryCount = count($explodeResults);
+                $subQueryCount = $subQueryCount -1;
+                for ($e = 0; $e < $subQueryCount; $e++){
+                    $queryInput[$i][$e] = str_replace(' ', '', $explodeResults[$e]);
+                }
+            } else {
+                $queryInput[$i] = $stringInput;
+            }
+        }
+    }
+
+    if (preg_match('/(and|:|;|,)/i', $queryInputRaw) === 1) {
+        if (preg_match('/(and)/i', $queryInputRaw === 1)){
+            parseByAnd($queryInputRaw);
+        }
+        if (strpos($queryInputRaw, ':')){
+            parseByColon($queryInputRaw);
+        }
+        if (strpos($queryInputRaw, ';')){
+            if(empty($queryInput)) {
+                parseBySemiColon($queryInputRaw);
+            } else {
+                parseBySemiColon($queryInput);
+            }
+        }
+
+    } else {
+        $queryInput[0] = $queryInputRaw;
+    }
+
+//Failed attempt at hierarchical function string parsing
+function parseAndAssembleQuery($inputString){
+        if (preg_match('/(and)/i', $inputString) === 1) {
+            $explodeResults = explode('and', $inputString);
+            $sectionCount = count($explodeResults);
+            for ($i = 0; $i < $sectionCount; $i++) {
+                $sectionsUnparsed[$i] = str_replace(' ', '', $explodeResults[$i]);
+            }
+        } else {
+            $sectionCount = 1;
+            $sectionsUnparsed = str_replace(' ', '', $inputString);
+        }
+        for ($i = 0; $i < $sectionCount; $i++){
+            $sectionParsed = $sectionsUnparsed[$i];
+            if ($sectionCount !== 0){
+                $query = "SELECT * FROM RecipeTable WHERE ";
+                if ($sectionCount > $i){
+                    $query .= $sectionParsed."AND WHERE";
+                } else {
+                    $query .= $sectionParsed;
+                }
+            } else {
+                $GLOBALS['err']['badSectionCount'] = true;
+                $query = "SELECT * FROM RecipeTable WHERE RecipeTitle LIKE '%%'";
+            }
+        }
+        return $query;
+    }
+
+    function parseByColon($inputString){
+        $validColumns = array('RecipeID', 'RecipeTitle', 'Course', 'URL', 'Source',
+            'MainIngredient', 'Region', 'Category', 'DateCreated', 'LastOnMenu',
+            'OnMenu', 'DateModified', 'Ingedients', 'IngredientsContinued', 'Instructions',
+            'Notes', 'Servings', 'Special', 'Rating', 'PrepTime', 'CookTime', 'Wine', 'Language',);
+        if (strpos($inputString, ':')){
+            $explodeResults = explode(':', $inputString);
+            $colResult = $explodeResults[0];
+            if (in_array($colResult, $validColumns)){
+                $colInput = $colResult;
+            } else {
+                $colInput = 'RecipeTitle';
+                $GLOBALS['err']['errBadCol'] = $colResult;
+            }
+            $queryOutput = $explodeResults[1];
+        } else {
+            $colInput = 'RecipeTitle';
+            $queryOutput = $inputString;
+        }
+        $queryInput = $queryOutput;
+        $subSection = $colInput." LIKE '%".$queryInput."%'";
+        return $subSection;
+    }
+
+//debug code for query parsing
+/*$commaReturn = parseByComma($queryInputRaw);
+    $commaCount = count($commaReturn);
+    $tableData[0]['commaCount'] = $commaCount;
+    for ($i = 0; $i < $commaCount; $i++){
+        $tableData[0]['commaValue'.$i] = $commaReturn[$i];
+    }
+
+    $explodeResults = explode(',', $queryInputRaw);
+    $queryCount = count($explodeResults);
+    $tableData[0]['queryCount'] = $queryCount;*/
+
+/*$tableData[0]['queryGenerated'] = parseAndAssembleQuery($queryInputRaw);
+    $query = "SELECT * FROM RecipeTable WHERE RecipeTitle LIKE '%potato%'";*/
+
+//debug for or statements
+    $queryHead = 'SELECT * FROM'.' RecipeTable WHERE ';
+    $tableData[0]['match?'] = preg_match('#\b(or)\b#i', $queryInputRaw);
+    if (preg_match('#\b(or)\b#i', $queryInputRaw) === 1) {
+        str_replace(' ', '', $queryInputRaw);
+        $separationResults = preg_split('#\b(or)\b#i', $queryInputRaw);
+        $tableData[0]['separation0'] = $separationResults[0];
+        $tableData[0]['separation1'] = $separationResults[1];
+        $divisionCount = count($separationResults);
+        $tableData[0]['divisionCount'] = $divisionCount;
+        $queryDivision = array();
+        //runs for same amount of number of divisions, generates $queryDivision
+        for ($i = 0; $i < $divisionCount; $i++){
+            //checks for presence of and, and runs accordingly
+            if (preg_match('#\b(and)\b#i', $separationResults[$i]) === 1) {
+                $splitResults = preg_split('#\b(and)\b#i', $separationResults[$i]);
+                $sectionCount = count($splitResults);
+                $sectionCount = $sectionCount -1;
+                $tableData[0]['sectionCount'.$i] = $sectionCount;
+                $querySectionString = '(';
+                for ($e = 0; $e < $sectionCount; $e++){
+                    $querySection = parseByColon($splitResults[$e]);
+                    $querySectionString .= $querySection.' AND ';
+                }
+                $sectionLast = parseByColon($splitResults[$sectionCount]);
+                $queryDivision[$i] = $querySectionString.$sectionLast.')';
+            } else {
+                $querySection = parseByColon($separationResults[$i]);
+                $queryDivision[$i] = '('.$querySection.')';
+            }
+        }
+        $tableData[0]['emptyarray'] = empty($queryDivision);
+        $divisionCount1 = count($queryDivision);
+        $divisionCount1 = $divisionCount1 -1;
+        $tableData[0]['divisionCount'] = $divisionCount1;
+        $queryDivisionJoined = $queryHead;
+        for ($i = 0; $i < $divisionCount1; $i++){
+            $queryDivisionJoined .= $queryDivision[$i].' OR ';
+        }
+        $queryDivisionLast = $queryDivision[$divisionCount1];
+        $query = $queryDivisionJoined.$queryDivisionLast;
+        $tableData[0]['orFunction'] = $query;
+    }
+
+//original sort function for table
+function sortTable(n) {
+    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+    table = document.getElementById("recipeDataTable");
+    switching = true;
+    dir = "asc";
+    rows = table.rows;
+    while(switching) {
+        switching = false;
+        for(i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName("TD")[n];
+            y = rows[i + 1].getElementsByTagName("TD")[n];
+            if(dir == "asc") {
+                if(x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                    shouldSwitch = true;
+                    break;
+                }
+            } else if(dir == "desc") {
+                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                    shouldSwitch = true;
+                    break;
+                }
+            }
+        }
+        if(shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            switchcount ++;
+        } else {
+            if(switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = true;
+            }
+        }
+    }
+}
+
+//some css
+.containerLoose320 {
+    min-width:320px; max-width:680px; min-height:1000px; padding:0 20px; margin:0 auto;
+    text-align:left; border-left:1px solid #eef; border-right:1px solid #eef;
+    display:grid; grid-template-columns:1fr 1fr; align-content: start;}
+
+//some js to control css
+function updateViewport(){
+    if(viewportWidth < 680){
+        document.getElementsByClassName('containerLoose680').style.display = 'grid';
+    } else {
+        document.getElementsByClassName('containerFixed920').style.display = 'grid';
+    }
+}
+
+let viewportWidth = window.innerWidth;
+
+//not old, still needs to be implemented: pspell checker
+$pspell_link = pspell_new("en");
+
+if (!pspell_check($pspell_link, "testt")) {
+    $suggestions = pspell_suggest($pspell_link, "testt");
+
+    foreach ($suggestions as $suggestion) {
+        echo "Possible spelling: $suggestion<br />";
+    }
+}

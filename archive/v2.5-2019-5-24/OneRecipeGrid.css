@@ -1,0 +1,239 @@
+/*
+ CSS template based off of andreas04 by Andreas Viklund
+ Responsive design ported to CSS Grid by Baldur Siegel
+ */
+body {margin:0; padding:0; font:76% tahoma,verdana,sans-serif;  color:#444; text-align:center;}
+.container, .containerThin {
+    width: 920px; min-height: 1200px; padding:0 20px; margin:0 auto; text-align:left;
+    border-left:1px solid #eef; border-right:1px solid #eef;
+    display:grid; grid-template-columns:repeat(4, 1fr); align-content: start;}
+.containerThin {width: 700px;}
+
+/* Tags */
+a {text-decoration:none; color:#269; font-weight:bold;}
+a:hover {text-decoration:underline;}
+p {margin:0 0 15px 0;}
+h1,h2,h3,h4 {margin:0; padding:0; font-weight:normal; line-height:1.2em;}
+h1 {font-size:3em; letter-spacing:-2px; color:#567; margin:15px 0 5px 20px;}
+h1 a:hover {text-decoration:none;}
+h2 {font-size:1.6em; letter-spacing:-1px; margin:0 ; color:#888;}
+h3 {color: #555; font-size:1.4em; margin:1em 0 0.5em 0.5em;}
+h4 {font-size:1.2em; font-weight:bold;}
+button, input[type=submit] {width: auto; height: auto; margin: 0; padding: 4px;
+    white-space: pre; font: 1em tahoma, verdana, Sans-Serif; text-align: center;
+    cursor: pointer; color: #333; background-color: #eee; box-sizing: border-box;
+    border-style: outset; border-color: #eef; -webkit-appearance: none; -webkit-border-radius: 0;}
+button:hover, input[type=submit]:hover {background-color: #ddd; transition: 0.2s;}
+button:active, input[type=submit]:active {border-style: inset; background-color: #bbb; transition: 0s;}
+textarea {resize: none; font: inherit; -webkit-appearance: none; -webkit-border-radius: 0; margin: 0; padding: 0; border: 1px solid #ddd;}
+input[type=text] {font: inherit; -webkit-appearance: none; -webkit-border-radius: 0; margin: 0; padding: 2px 8px; border: 1px solid #ddd;}
+
+/* Header Area */
+.sitetitle {grid-column:1 / 4; grid-row:1; height: auto;}
+.sitetitle h1 {font-size:3em; letter-spacing:-2px; color:#567; padding-right: 1.6em;}
+.sitetitle h2 {font-size:1.6em; letter-spacing:-1px; margin:-5px 0 0 30px; color:#888;}
+.menu {grid-column:3 / 5; grid-row:1; display:grid; grid-template-columns:1fr; text-align:right; height:89px; padding-top: 5px;}
+.menuInternal {grid-column:1 / 2; grid-row:1; justify-self: end; align-self: center;}
+.menuInternal button {border: none; background-color: #fff;}
+.menuInternal a, .menuInternal button {font-size:1.6em; letter-spacing:-1px; color:#888; font-weight:normal; padding:30px 6px 36px 6px;}
+.menuInternal a:hover, .menuInternal button:hover {color:#269; text-decoration:none; border-left:1px solid #eee;
+    padding:30px 5px 36px 5px; border-right:1px solid #eee; transition: 0s;}
+.menuInternal button:active {border-left: 1px solid #eee; border-right: 1px solid #eee; background-color: #fff;}
+
+/* Dropdown CSS */
+.dropdown {position: relative; display: inline-block;}
+.dropContent {width: 100%; display: none; position: absolute; text-align: center; box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); z-index: 1;}
+.dropContent button {width: 95px; text-align: center;}
+.dropContent a, .dropContent button {padding: 6px 12px; display: block; background-color: #fff;}
+.dropContent a:hover, .dropContent button:hover {background-color: #ddd; padding: 6px 12px; border: none;}
+.dropdown:hover .dropContent {display: block;}
+
+/* Modal CSS */
+.modal {display: none; position: fixed; z-index: 1; padding-top: 100px; left: 0; top: 0; width: 100%;
+    height: 100%; overflow: auto; background-color: rgb(0,0,0); background-color: rgba(0,0,0,0.4);}
+.modal-content {background-color: #fefefe; margin: auto; padding: 20px; border: 1px solid #888; width: 500px;}
+.close {position: relative; bottom: 22px; left: 14px; color: #aaaaaa; float: right; font-size: 28px; font-weight: bold;}
+.close:hover, .close:focus {color: #000; text-decoration: none; cursor: pointer;}
+
+/* Primary Content */
+.content {grid-column:1 / 5; grid-row:2;}
+.col1-7_row1 {grid-column:1 / 7; grid-row:1;}
+.col1-4_row2 {grid-column:1 / 4; grid-row:2;}
+.col4-7_row2 {grid-column:4 / 7; grid-row:2;}
+.col1-4_row3 {grid-column:1 / 4; grid-row:3;}
+.col4-7_row3 {grid-column:4 / 7; grid-row:3;}
+.col1-4_row4 {grid-column:1 / 4; grid-row:4;}
+.col4-7_row4 {grid-column:4 / 7; grid-row:4;}
+.col1-4_row5 {grid-column:1 / 4; grid-row:5;}
+.col4-7_row5 {grid-column:4 / 7; grid-row:5;}
+.col1-4_row6 {grid-column:1 / 4; grid-row:6;}
+.col4-7_row6 {grid-column:4 / 7; grid-row:6;}
+.col1-7_row7 {grid-column:1 / 7; grid-row:7;}
+.col1-3_row8 {grid-column:1 / 3; grid-row:8;}
+.col3-5_row8 {grid-column:3 / 5; grid-row:8;}
+.col5-7_row8 {grid-column:5 / 7; grid-row:8;}
+.col1-7_row9 {grid-column:1 / 7; grid-row:9;}
+.col1-7_row10 {grid-column:1 / 7; grid-row:10;}
+.col1-7_row11 {grid-column:1 / 7; grid-row:11;}
+.col1-7_row12 {grid-column:1 / 7; grid-row:12;}
+
+/* Recipe Display CSS */
+.recipeContainer {width: 98%; height: auto; padding: 0; margin: 0 auto; text-align: left;
+    border: none; grid-column:1 / 5; grid-row: 2; display: grid; grid-template-columns: repeat(6, 1fr);
+    align-content: start; justify-content: normal;}
+.recipeText {margin: 0 10px 15px 10px;}
+.recipeText h2 {border-bottom:2px solid #abb; padding: 0; margin: 0; color: #555;}
+.recipeText h3 {padding: 0.6em 0 0 1.2em; margin: 0;}
+.bigError {grid-column:1 / 5; border-left: 4px solid #942a25; background-color: #ffe4e8;
+    font: inherit; font-size: 2em; text-align: center; font-weight: bold;}
+.modalInternalGrid {display: none; grid-template-columns: 1fr 1fr;}
+.headerText {text-align: left; border-bottom: 2px solid #abb;}
+.modalInternalGrid .headerText {grid-column:1 / 3; grid-row: 1; margin: 0;}
+.addRecipeToMenu form {grid-column:1 / 3; grid-row: 2; margin: 0; padding: 0;}
+.addMenuButton {margin-top: 10px;}
+.addRecipePictureModal form {grid-column:1 / 3; grid-row: 2; display: grid; grid-template-columns: inherit; margin: 0;}
+.inputLabel {margin: 6px 4px 0 12px;}
+.picInputLabelFile {grid-column:1 / 2; grid-row: 1;}
+.picInputLabelURL {grid-column:2 / 3; grid-row: 1;}
+.picInputFile {grid-column:1 / 2; grid-row: 2;}
+.picInputURl {grid-column:2 / 3; grid-row: 2;}
+.addRecipePictureModal form .pictureSubmit {grid-column: 1 / 3; grid-row: 3; align-self: center; justify-self: center;
+    font: inherit; margin: 20px 0 0 0; padding: 4px 16px; font-size: 1.2em;}
+.instructions {padding: 2em 0;}
+.recipeContainer p {padding: 0 12px; margin: 0; font: inherit; font-size: 1.1em;}
+.submitWrapper, #google_translate_element {margin: 9px auto 0 auto; text-align: center;}
+.imgButton, .recipePicture {display: inline-block;}
+.imgButton {position: relative; top: 7px;}
+.imgPositionDisplay {display: block; width: 100%; text-align: center;}
+.imgPosBlob {display: inline-block; width: 14px; height: 14px; margin: 0 4px; padding: 0; position: relative;
+    bottom: 6px; border: 0.3em solid #888; border-radius: 50%; background-color: #fff;}
+.filledBlob {background-color: #888;}
+#frequency h3 {padding: 0.6em 0 0.2em 0; text-align: center;}
+#onMenu {text-align: center; font: inherit; margin: 0; padding: 0;}
+#picture {display: inline-block; text-align: center; vertical-align: middle; margin-bottom: 15px;}
+#prevButton {border-radius: 10px 0 0 10px; border-right: none; width: 60px; height: 280px;}
+#nextButton {border-radius: 0 10px 10px 0; border-left: none; width: 60px; height: 280px;}
+
+/* Recipe Input CSS */
+.recipeInputForm .recipeText {border: none;}
+.uploadPictureBox {height: 224px; border: 1px solid #eee;}
+.uploadPictureBox h2 {padding: 8px 4px 0 4px;}
+.pictureUpload {display: grid; grid-template-columns: 60% 40%; margin: 4px;}
+.pictureUpload #fileSelect {grid-column:1 / 2; grid-row: 1;}
+.pictureUpload #urlSelect {grid-column:1 / 2; grid-row: 2;}
+.pictureUpload label h3 {margin: 12px 4px 4px 20px;}
+.pictureUpload label input {margin: 0 0 0 12px;}
+.pictureUpload .submitWrapper {grid-column:2 / 3; grid-row: 1 / 3; align-self: center; width: 100%}
+.pictureUpload .submitWrapper input[type=submit] {width: 80%;}
+.submitWrapper .bigButton {display: inline-block; padding: 4px 20px; margin: auto 4px; border: none; border-radius: 8px; font-size: 1.8em;}
+.submitWrapper .bigButton:active {border:none;}
+.buttonRed {background-color: #ff98a4;}
+.buttonRed:hover {background-color: #d9848d; transition: 0.2s;}
+.recipeText input[type=text], .recipeText textarea {width: 100%; padding: 2px;}
+.recipeText textarea {-webkit-box-sizing: border-box; box-sizing: border-box; padding: 4px; margin: 0;}
+.deletePictureContainer {display: grid; grid-template-columns: 1fr 1fr; grid-gap: 10px; grid-auto-flow: row; margin: 8px;}
+.deletePictureBox {grid-column:1 / 2;}
+.deletePictureBox:nth-child(2n) {grid-column:2 / 3;}
+.deleteThumbnail {width: 100%;}
+.deleteCaption {display: inline-block; text-align: center; width: 100%;}
+.deleteCaption button {width: 50%;}
+.falseImage {height: 0; width: 100%; padding-top: 66.66%; background-color: #efefef;}
+.falseImageCaption {position: relative; bottom: 130px; text-align: center;}
+.falseImageCaption h1 {color: #777; font-size: 2.2em; margin: 0; letter-spacing: -1px;}
+.modalInternal {display: none;}
+.imageHolder {display: block; width: 95%; margin: 8px auto 16px auto;}
+.actionTitle {margin: 6px 0; font-size: 1.8em;}
+.imgPlaceDisplay {display: flex; flex-flow: row nowrap; width: 100%; margin: 8px auto; text-align: center;}
+.imgIcon {width: auto; height: 66px; background-color: #eee; margin: 0 4px; flex-grow: 1;
+    display: grid; grid-template-columns: 1fr; align-content: center;}
+.blueIcon {flex-grow: 2; background-color: #00B0FF;}
+.blueIcon div h2 {color: #fff;}
+
+/* Recipe Search CSS */
+#loadingIcon {width: 22px; position: relative; top: 5px;}
+#searchError {
+    color: #942a25; font-size: 1em; font-weight:bold; display: block;
+    margin: 10px 0 0 6px; padding: 2px 0 2px 20px;
+    border-left: 2px solid #942a25; background-color: #ffe4e8}
+#search {margin-bottom: 1.6em;}
+.inputArea {margin: 0 0 0.6em 0;}
+.searchHeader {border: none; margin: 0; color: #444; font-size: 1.6em; transition: 0.3s;}
+.searchHeaderLarge {font-size: 2.8em; padding: 5px; transition: 0s;}
+.syntaxHelp {color: #bbb; margin: 0; padding: 5px; font-size: 0.9em; font-weight: normal; display: none;}
+.syntaxHelp b {color: #666;}
+.searchFieldText {
+    width: 50%; height: 27px; border-radius: 0; margin: 0;
+    padding: 0; letter-spacing: normal; word-spacing: normal; text-transform: none;
+    text-indent: 0; text-shadow: none; font: inherit;}
+.searchFieldText:active .autocompleteDrop {display: block;}
+.optionButton {
+    width: auto; height: 33px; border-radius: 0; margin: 0; padding: 0;
+    cursor: default; -webkit-border-radius: 0; display: inline-block;}
+.searchFieldButton {
+    width: 8%; height: 33px; border-radius: 0; margin: 0; padding: 0;
+    cursor: default; border-left-style: none; -webkit-border-radius: 0; display: inline-block;}
+.searchFieldButton:active, .optionButton:active {
+    border-style: inset; background-color: #ddd;}
+.autocompleteWrapper {position: relative; display: inline;}
+.autocompleteDrop {display: none; width: 100%; z-index: 1; position: absolute; left: 0; text-align: left; background-color: #eee;}
+.optionPanel {display: none;}
+.optionCheck {vertical-align: sub;}
+.searchInfo {display: none;}
+.errorBar {width:100%; height:26px; background-color:#FFE4E8; font-size: 1.2em;
+    border-left: 4px solid #942a25; padding:4px; font-weight:bold; display:none;}
+.searchData {font-size: 1.1em; color: #bbb; font-weight: bold; margin: 0 0 0 10px;}
+
+/* SVG Button Classes */
+.picButton {background-color: #fff; padding: 0; border: none; border-radius: 0;}
+.arrowPath {fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.5875;}
+.arrowSVG {width: 60%;}
+.deleteSVG {width: 22%; padding: 4px;}
+.strokeFill {stroke: #ddd; fill: #ddd;}
+.picButtonHover:hover, .picButtonHover:hover .strokeFill {background-color: #eee; transition: 0.4s; stroke: #567; fill: #567;}
+.picButtonActive:active, .picButtonActive:active .strokeFill {border: none; background-color: #aaa; transition: 0s;}
+.picButtonHoverEmpty:hover {background-color: #fff; cursor: default;}
+.picButtonActiveEmpty:active {border: none; background-color: #fff; cursor: default;}
+
+/* Autocomplete Classes */
+.autocomplete-items {position: absolute; border: 1px solid #d4d4d4; border-top: none;
+    margin-top: 8px; z-index: 99; top: 100%; left: 0; right: 0; text-align: left;}
+.autocomplete-items div {padding: 4px 0 4px 1em; cursor: pointer; background-color: #fff; border-top: 1px solid #d4d4d4; }
+.autocomplete-items div:hover {background-color: #e9e9e9;}
+.autocomplete-active {background-color: DodgerBlue !important; color: #ffffff;}
+.autocomplete-active .lightText {color: #bbb;}
+
+/* Extra Classes */
+.bigButton {display: inline-block; padding: 4px 20px; margin: auto 4px; border: none; border-radius: 8px; font-size: 1.8em;}
+.bigButton:active {border:none;}
+.center {text-align: center;}
+.equalmargins {margin-left: auto; margin-right: auto;}
+.bottomborder {border-bottom:2px solid #abb;}
+.hide {display: none;}
+.block {display: block;}
+.lightText {color: #999;}
+
+/* Custom Table Formatting */
+.recipeData {border-collapse: collapse; font-size: 1.17em; width:100%; /*height: 1085px; overflow: auto;*/ display: block}
+.metaTableHeader {cursor: pointer; top: 0; background-color: #fff; padding: 0; margin: 0; border-top: 2px solid #fff; border-bottom: 2px solid #fff;}
+.recipeData td {padding: 4px 6px 4px 6px;}
+.recipeData tr:nth-child(even) {background-color: #eee;}
+.tableDivider  {background-color: #fff; border-top: 2px solid #777; border-bottom: 2px solid #777; padding: 0 0 0 2em;
+    font: inherit; font-weight: bold; color: #444;}
+.sortBorderBottom {border-bottom: 2px solid #1a8cff;}
+.sortBorderTop {border-top: 2px solid #1a8cff;}
+
+/* Responsive Stuff */
+@media (max-width: 960px){
+
+}
+
+@media (max-width: 720px) {
+
+}
+
+/* Safari (version 10+) Specific CSS */
+@media not all and (min-resolution:.001dpcm) {
+    @media {
+
+    }
+}

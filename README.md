@@ -2,8 +2,6 @@
 Diese Rezeptesuchfunktion dient als Suchmaschiene für eine persönliche Rezetpte Datenbank. Als solches, braucht sie eine Verbindung zu einer Datenbank mit den richtigen Spalten, damit sie auch richtig ausgelesen werden. 
 
 # Benutzung
-**Eingabe Syntax:**
-
 **Einfache Suchen:** Als einfache Suche kann man einfache Worter eingeben. Als default werden diese Worter nur im Rezeptetitel nachgeschlagen, und damit werden nur Rezepte zurückgegeben, die in ihrem Titel dieses Wort besitzen. Wenn mehrere Wörter eingegeben werden, und die Originalsuche keine Ergebnisse zurückbringt, wird die Suche vereinfacht und es werden nach den einzelnen Wörtern gesucht. ***Syntax: 'Wort1 Wort2 Wort3 ...'***. *Beispiel: 'Lime Bean Apple'*.
 
 Als vertiefung zu einer normalen Suche kann man auch mit bestimmten Sonderzeichen seine Eingabe genauer gestalten. Darunter gehören die Zeichen ':', ',' und ';', sowie die Wörter 'and' und 'or'. 

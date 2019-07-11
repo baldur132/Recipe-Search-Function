@@ -1,5 +1,5 @@
 # Recipe-Search-Function
-Diese Rezeptesuchfunktion dient als Suchmaschiene für eine persönliche Rezetpte Datenbank. Als solches, braucht sie eine Verbindung zu einer Datenbank mit den richtigen Spalten, damit sie auch richtig ausgelesen werden. 
+Diese Rezeptesuchfunktion dient als Suchmaschiene für eine persönliche Rezetpte Datenbank. Als solches, braucht sie eine Verbindung zu einer Datenbank mit den richtigen Spalten, damit sie auch richtig ausgelesen werden kann. 
 
 # Benutzung
 **Einfache Suchen:** Als einfache Suche kann man einfache Worter eingeben. Als default werden diese Worter nur im Rezeptetitel nachgeschlagen, und damit werden nur Rezepte zurückgegeben, die in ihrem Titel dieses Wort besitzen. Wenn mehrere Wörter eingegeben werden, und die Originalsuche keine Ergebnisse zurückbringt, wird die Suche vereinfacht und es werden nach den einzelnen Wörtern gesucht. ***Syntax: 'Wort1 Wort2 Wort3 ...'***. *Beispiel: 'Lime Bean Apple'*.
@@ -10,7 +10,7 @@ Als vertiefung zu einer normalen Suche kann man auch mit bestimmten Sonderzeiche
 
 **Zeichen Komma(,):** Ein Komma trennt mehrere Wörter die unter eine bestimmte Spalte gesucht werden sollten. Damit kann man nach der gleichzeitig für mehrere Wörter suchen, ohne die Spalte mehrmals anzugeben. ***Syntax: 'Spalte: Suchwort1, Suchwort2, Suchwort3 ...'***. *Beispiel: 'Ingedients: carrot, celery, onion'*. Mit dieser Suche bekommt man Rezepte, die als Zutat (Spalte 'Ingedients') 'carrot', 'celery' und 'onion' haben. 
 
-**Zeichen Strichpunkt(;):** Ein Strichpunkt gehört nur nach der gesamten Eingabe, und wird benutzt, um eine spezielle Sortierung von Rezepten zu erreichen. Dafür muss auch das Kästchen 'carry order data', was später erfasst sein wird, markiert sein. ***Syntax: 'Suche;Sortierspalte:[ASC|DESC]'***. *Beispiel: 'RecipeTitle: orange;NPictures:DESC'*. Hier wird zuerst nach Rezepte die in ihrem Titel das Wort 'orange' haben gesucht, aber danach wird auch die Sortierreihenfolge bestimmt. In dem Fall wird nach der Anzahl von Bildern gesucht die das Rezept besitzt (Spalte 'NPictures'), und in absteigender Reihenfolge (DESC). 
+**Zeichen Strichpunkt(;):** Ein Strichpunkt gehört nur nach der gesamten Eingabe, und wird benutzt, um eine spezielle Sortierung von Rezepten zu erreichen. Dafür muss auch das Kästchen 'carry order data', was später erfasst sein wird, markiert sein. ***Syntax: 'Suche;Sortierspalte:[ASC/DESC]'***. *Beispiel: 'RecipeTitle: orange;NPictures:DESC'*. Hier wird zuerst nach Rezepte die in ihrem Titel das Wort 'orange' haben gesucht, aber danach wird auch die Sortierreihenfolge bestimmt. In dem Fall wird nach der Anzahl von Bildern gesucht die das Rezept besitzt (Spalte 'NPictures'), und in absteigender Reihenfolge (DESC). 
 
 **Verbindungswort 'and':** Das Wort 'and' kann benutuzt werden, um mehrere Suchen zu verbinden. ***Syntax: 'Suche1 and Suche2 and Suche3 ...'***. *Beispiel: 'RecipeTitle: fruit and Ingedients: berry'*. Diese Beispielsuche ergibt nur Rezepte, die in ihrem Titel das Wort 'fruit' haben, und auch als Zutat (Spalte 'Ingedients') 'berry' haben.
 
@@ -26,3 +26,8 @@ Zwischen der Eingabezeile und dem 'Search' Knopf befindet sich ein Knopf der die
 **Carry Order Data:** Die Funktion von diesem Kästchen, in zusammenhang mit der Funktion vom Strickpunkt, wurde vorhin unter *'Zeichen Strichpunkt (;)'* erwähnt.
 
 # Erläuterung vom Suchprozess
+**Nach dem drücken vom 'search' Knopf**
+
+**JavaScript:** Die Werte von der Sucheingabe und Parameter werden vom HTML Document gelesen. Duch eine JQuery Function werden die Daten durch ein HTTP POST request zu dem RecipeSearchPHP.php Document geschickt. Zusätzlich werden auch manche Nebenaufgaben erledigt, wie das URL Hash einen neuen Wert zu geben, und einige HTML Elemente zu verändern, wie das Lade-icon anzuzeigen.
+
+**PHP:** Nach der Annahme der Daten wird die Function 'searchFunction' aufgerufen. Diese Function steuert den Ablauf vom Suchprozess, wie die Unterfunctionen richtig aufzurufen und die Suchergebnisse zu organisieren. 

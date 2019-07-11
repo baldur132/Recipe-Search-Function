@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" content="text/html" http-equiv="content-type"/>
+        <meta content="your description goes here" name="description"/>
+        <meta name="keywords" content="reicipe data base" />
+        <meta name="author" content="Baldur Siegel" />
+        <link type="text/css" rel="stylesheet" href="OneRecipe.css" />
+        <title>Recipe Database Search</title>
+
+        <script src="../js/jquery-3.1.1.js"></script>
+        <script src="../js/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+        <link type="text/css" rel="stylesheet" href="../js/jquery-ui-1.12.1.custom/jquery-ui.css" />
+    </head>
+
+    <body>
+        <div id="container1024">
+            <div id="sitetitle">
+                <!--<a href="../Cooking.php"><img style="
+                    float:left; width:90px; padding:0px" src="RecipePictures/logoico.png"></a>-->
+                <h1>Siegel Recipes</h1>
+                <h2>Search Input</h2>
+            </div>
+            <div id="menu">
+                <a href="../Cooking.php">Home</a>
+                <a href="RecipeList.php">List All</a>
+            </div>
+            
+            <div id="content">
+                <div id="search">
+                    <div class="center inputArea">
+                        <h2 style="border: none;" id="searchHeader">Recipe Database Search</h2>
+                        <input class="searchFieldText" id="textField" type="text"><input class="searchFieldButton" id="textInput" type="button" onclick="initiateSearch()" value="Search">
+                        <br>
+                        <!--<input type="button" value="Toggle Results" onclick="toggleResultStyle(true)">
+                        <input type="button" value="Toggle Results" onclick="toggleResultStyle(false)">-->
+                    </div>
+                </div>
+                <div id="results" style="display:none">
+                    <div class="searchInfo">Displaying <span id="resultNum"></span> Recipes: </div>
+                    <div style="display:none" id="searchError"></div>
+                    <div id="recipeData"></div>
+                </div>
+                <div id="error" style="display:none">
+                    <h3><span id="displayError"></span></h3>
+                </div>
+            </div>
+        </div>
+    <script src="RecipeSearchJS.js"></script>
+    <script>
+        window.onkeypress = function(event) {if (event.key === 'Enter') {initiateSearch();}}
+    </script>
+    </body>
+</html>

@@ -64,20 +64,30 @@ ungültig ist wird eine Fehlermeldung angegeben und zurückgeschickt, sonst wird
 Danach, wird die erste große Funktion aufgerufen.
 
 ***Parse Query Strict:*** Diese Funktion Teilt die Sucheingabe nach Sonderzeichen und Verbindungsworter auf, und bildet dadurch
-eine Array von Schlüsselworter und eine passende complexe SQL Query mit Parameter. Beinhaltet in diese Funktion sind vier
-Unterfunktionen, die jeweils ein Element aus der Sucheingabe ausfindig machen, und damit auch eine hierachische
+eine Array von Schlüsselworter und eine passende complexe SQL PDO Statement mit Parameter. Beinhaltet in diese Funktion sind
+vier Unterfunktionen, die jeweils ein Element aus der Sucheingabe ausfindig machen, und damit auch eine hierachische
 Funktionsstruktur aufbauen. Die Sonderzeichen werden in einer bestimmten Reihenfolge aufgelöst: Zunächst mal wird die Eingabe
 nach dem Wort 'or' aufgeteilt, danach mit 'and', folgend mit ':', und zuletzt nach ','. Die erste Unterfunktion 'parseOr' teilt
 die Sucheingabe in Untereinheiten basierend auf dem Schlüsselwort 'or', und ruft für jede Untereinheit die zweite Unterfunktion
 'parseAnd' auf. Damit werden die Untereinheite in kleinere Abschnitte aufgeteilt mit dem Wort 'and'. Mit der dritten
 Unterfunktion 'parseColon', die von der UnterFunktion 'parseAnd' aufgerufen wird, werden die Abschnitte nach dem Inhalt von
 einem Doppenpunkt(:) geprüft. Wenn vorhanden, wird auch der Inhalt vor dem Doppelpunkt gegen einer Liste von gültigen Spalten
-geprüft, und wenn es als gültig erwiesen wird, wird die Spalte in der endgültigem SQL Query eingesetzt, sonst wird nur
+geprüft, und wenn es als gültig erwiesen wird, wird die Spalte in der endgültigen SQL PDO Statement eingesetzt, sonst wird nur
 'RecipeTitle' stadessen eingesetzt. Als letztes werden die einzelnen Schlüsselworter die mit Kommas(,) getrennt sind,
-auseinander genommen, und in einem Array speichert. Die komplette SQL Query und Schlüsselwortarray werden and die Hauptfunktion
-'searchFunction' zurückgegeben. 
+auseinander genommen, und in einem Array speichert. Die komplette SQL PDO Statement und Schlüsselwortarray werden and die
+Hauptfunktion 'searchFunction' zurückgegeben. 
 
 Eine Besonderheit von dieser Funktion steht darin, dass bis zum end die Leerzeichen komplett entfernt werden. Damit werden
 einfache Suchen wie 'coffee chili' auf 'coffeechili' verkurtzt. Um dieses Problem zu erheben, würde die Funktion
 'parseQuerySoft' eingesetzt. Diese Funktion wird nur aufgerufen, wenn die Sucheingabe Leerzeichen beinhaltet, und das 'Strict
 Parsing Only' Kästchen *nicht* markiert ist. 
+
+***Parse Query Soft:*** Das Leerzeichen Problem das vorher erwähnt würde ist mit dieser Funktion erhebt. Diese Function 
+produziert auch vereinfachte SQL PDO Statements, die dann vereinfachte Suchergebnisse produzieren. Zunächst wird die Sucheingabe
+nach Leerzeichen aufgeteilt. Diese Wörter werden gegen eine Liste von gültigen Spalten vergleicht, und Wörter die passen werden
+ausgefiltert. Restliche Wörter bekommen ihre eigene SQL PDO Statement, die immer unter der Spalte 'RecipeTitle' nach Treffer
+sucht. Diese Queries werden an der Hauptfunktion wiedergegeben.
+
+Nach der Verarbeitung von der Sucheingabe, und alle SQL PDO Statements gebildet sind, werden sie mit der Funktion 'executeQuery' ausgeführt, und die Ergebnisse in einem mehrschichtigem Array eingesetzt.
+
+***Execute Query:*** 

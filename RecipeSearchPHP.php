@@ -74,27 +74,28 @@ function searchFunction($userQuery, $orderData, $parameters){
     $resultData[0]['errorDetails'] = '';
 
     //Dynamic Query Selection/Execution
-        $tableData = executeQuery($statement, $keywords);
-        $tableData[0]['content'] = 'original';
-        if($forceStrict !== 'true' && strpos($userQuery, ' ') !== false){
-            $softData = parseQuerySoft($userQuery, $orderData);
-            $querySet = $softData[0];
-            $contentSet = $softData[1];
-            $resultData[0]['contentSet'] = $softData[1];
-            $queryCount = count($querySet);
-            for($i = 0; $i < $queryCount; $i++){
-                $resultData[0]['softQueries'][$i] = $querySet[$i];
-                $softTableData = executeQuery($querySet[$i], array($contentSet[$i]));
-                $softTableData[0]['content'] = str_replace('%', '', $contentSet[$i]);
-                $e = $i + 2;
-                $resultData[1] = $tableData;
-                $resultData[$e] = $softTableData;
-            }
-            $resultData[0]['softExecution'] = true;
-        } else {
-            $resultData[0]['softExecution'] = false;
+    $tableData = executeQuery($statement, $keywords);
+    $tableData[0]['content'] = 'original';
+    if($forceStrict !== 'true' && strpos($userQuery, ' ') !== false){
+        $softData = parseQuerySoft($userQuery, $orderData);
+        $querySet = $softData[0];
+        $contentSet = $softData[1];
+        $resultData[0]['contentSet'] = $softData[1];
+        $queryCount = count($querySet);
+        for($i = 0; $i < $queryCount; $i++){
+            $resultData[0]['softQueries'][$i] = $querySet[$i];
+            $softTableData = executeQuery($querySet[$i], array($contentSet[$i]));
+            $softTableData[0]['content'] = str_replace('%', '', $contentSet[$i]);
+            $e = $i + 2;
             $resultData[1] = $tableData;
+            $resultData[$e] = $softTableData;
         }
+        $resultData[0]['softExecution'] = true;
+    } else {
+        $resultData[0]['softExecution'] = false;
+        $resultData[1] = $tableData;
+    }
+
     if ($tableData[0]['errorMsg'] === 'SQLerr') {
         $resultData[0]['errorMsg'] = 'SQLerr';
         $resultData[0]['errorDetails'] .= 'Bad SQL Statement;';

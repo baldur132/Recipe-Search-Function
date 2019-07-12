@@ -90,4 +90,4 @@ sucht. Diese Queries werden an der Hauptfunktion wiedergegeben.
 
 Nach der Verarbeitung von der Sucheingabe, und alle SQL PDO Statements gebildet sind, werden sie mit der Funktion 'executeQuery' ausgeführt, und die Ergebnisse in einem mehrschichtigem Array eingesetzt.
 
-***Execute Query:*** 
+***Execute Query:*** Diese Funktion führt die vorbereiteten SQL PDO Statements aus. Zuerst wird durch das PDO-Protokoll eine verbindung zu der 'siegel7_Recipes' Datenbank erstellt, mit den Benutzer und Passwort Daten in dem dbinfo.inc.php File sich befinden (hier nicht vorhanden). Direkt nach der Erstellung von der Verbindung wird die Buchstabencodierung von ASKII auf UTF-8 umgestellt, um fehler mit Umlaute zu erheben. Dann wird die eigentliche Datenbanksuche ausgeführt. 

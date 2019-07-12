@@ -1,6 +1,7 @@
 # Recipe-Search-Function
 Diese Rezeptesuchfunktion dient als Suchmaschiene für eine persönliche Rezetpte Datenbank. Als solches, braucht sie eine
-Verbindung zu einer Datenbank mit den richtigen Spalten, damit sie auch richtig ausgelesen werden kann. 
+Verbindung zu einer Datenbank mit den richtigen Spalten, damit sie auch richtig ausgelesen werden kann. Diese Datenbank wird
+nicht mit dem Code geliefert. 
 
 # Benutzung
 **Einfache Suchen:** Als einfache Suche kann man einfache Worter eingeben. Als default werden diese Worter nur im Rezeptetitel
@@ -88,7 +89,8 @@ nach Leerzeichen aufgeteilt. Diese Wörter werden gegen eine Liste von gültigen
 ausgefiltert. Restliche Wörter bekommen ihre eigene SQL PDO Statement, die immer unter der Spalte 'RecipeTitle' nach Treffer
 sucht. Diese Queries werden an der Hauptfunktion wiedergegeben.
 
-Nach der Verarbeitung von der Sucheingabe, und alle SQL PDO Statements gebildet sind, werden sie mit der Funktion 'executeQuery' ausgeführt, und die Ergebnisse in einem mehrschichtigem Array eingesetzt.
+Nach der Verarbeitung von der Sucheingabe, und alle SQL PDO Statements gebildet sind, werden sie mit der Funktion 'executeQuery'
+ausgeführt, und die Ergebnisse in einem mehrschichtigem Array eingesetzt.
 
 ***Execute Query:*** Diese Funktion führt die vorbereiteten SQL PDO Statements aus. Zuerst wird durch das PDO-Protokoll eine
 verbindung zu der 'siegel7_Recipes' Datenbank erstellt, mit den Benutzer und Passwort Daten in dem dbinfo.inc.php File sich
@@ -108,4 +110,11 @@ erste Element im Array beinhaltet nur Metainformationen, und wird als solches vo
 under der Variable 'metaInfo' gespeichert. Die restlichen Elemente halten die Ergebnissen von den mehreren Suchen und werden
 voneinader gespaltet und in der Array 'recipeDataArray' gespeichert. Anschliesend wird die Funktion 'displayResults' aufgerufen.
 
-***Display Results:*** 
+***Display Results:*** Aufgabe dieser Funktion ist, die vom PHP angekommenen Daten zu verarbeiten und eine HTML Tabelle zu
+erzeugen. Als erstes werden alte Fehlermeldungen und Tabellen von dem Bildshirm entfernt. Neue Fehlermeldungen (wenn vorhanden)
+werden aus dem 'metaInfo' gelesen, und auf dem Bildschirm angezeigt. Die Unterfunktion 'generateTable' ist für die erzeugung von
+neuen Tabellen zuständig. Sie, durch regelung von der Hauptfunktion, erzeugt alle notwendigen Tabellen von dem Ergebnissen, die
+dann zusammengesetzt und anschließend angezeight werden. Kleinere Aufgaben werden zusätzlich auch erledigt, wie das Lade-icon zu
+verstecken und die Anzahl der Rezepte einzuschreiben.
+
+**Fertige Anzeige der Suchergebnisse**

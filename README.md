@@ -53,7 +53,7 @@ Charakter entfernt, und damit werden nur genaue Ergebnisse angezeigt.
 # Erläuterung vom Suchprozess
 **Nach dem drücken vom 'search' Knopf**
 
-**JavaScript:** Die Werte von der Sucheingabe und Parameter werden vom HTML Document gelesen. Duch eine JQuery Funktion werden
+**JavaScript:** Die Werte von der Sucheingabe und Parameter werden vom HTML Document gelesen. Durch eine JQuery Funktion werden
 die Daten durch ein HTTP POST request zu dem RecipeSearchPHP.php Document geschickt. Zusätzlich werden auch manche Nebenaufgaben
 erledigt, wie das URL Hash einen neuen Wert zu geben, und einige HTML Elemente zu verändern, wie das Lade-icon anzuzeigen.
 
@@ -90,4 +90,16 @@ sucht. Diese Queries werden an der Hauptfunktion wiedergegeben.
 
 Nach der Verarbeitung von der Sucheingabe, und alle SQL PDO Statements gebildet sind, werden sie mit der Funktion 'executeQuery' ausgeführt, und die Ergebnisse in einem mehrschichtigem Array eingesetzt.
 
-***Execute Query:*** Diese Funktion führt die vorbereiteten SQL PDO Statements aus. Zuerst wird durch das PDO-Protokoll eine verbindung zu der 'siegel7_Recipes' Datenbank erstellt, mit den Benutzer und Passwort Daten in dem dbinfo.inc.php File sich befinden (hier nicht vorhanden). Direkt nach der Erstellung von der Verbindung wird die Buchstabencodierung von ASKII auf UTF-8 umgestellt, um fehler mit Umlaute zu erheben. Dann wird die eigentliche Datenbanksuche ausgeführt. 
+***Execute Query:*** Diese Funktion führt die vorbereiteten SQL PDO Statements aus. Zuerst wird durch das PDO-Protokoll eine
+verbindung zu der 'siegel7_Recipes' Datenbank erstellt, mit den Benutzer und Passwort Daten in dem dbinfo.inc.php File sich
+befinden (hier nicht vorhanden). Direkt nach der Erstellung von der Verbindung wird die Buchstabencodierung von ASKII auf UTF-8
+umgestellt, um fehler mit Umlaute zu erheben. Der vorbereitete Statement wird mit hilfe der Sclüsselworterarray ergänzt (und
+damit auch gleichzeitig vor SQL Injection attacks abgesichert) und dann ausgeführt. Die Suchergebnisse werden mit der PDO
+fetchAll Methode in der Variable '$data' geladen. Reihenweise werden die Ergebnisse ausgelesen und in die complexe Array
+'$tableData' eingesetzt. Nachdem alle Ergebnisse sortiert geworden sind, wird die Array an der Hauptfunktion zurückgegeben.
+ 
+Alle SQL PDO Statements werden mit der 'executeQuery' Funktion ausgeführt, und die Daten in einer Array wiedergegeben. Diese
+Ergebnissätze werden zusammengefasst in der Variable '$resultData' und diese wird endgültig as JSON objekt an das JavaScript
+wiedergegeben.
+
+**JavaScript:** Die zurückgegebene Daten von dem PHP script erlöst das Verarbeitungsprozess von den Daten. Das JSON object wird zunächst in einen String umgewandelt, und zuschließend mit der Methode '.parseJSON()' in eine JavaScript Arraz umgewandelt. Das erste Element im Array beinhaltet nur Metainformationen, und wird als solches von dem eigentlichen Ergebnissen getrennt und under der Variable 'metaInfo' gespeichert. Die restlichen Elemente halten die Ergebnissen von den mehreren Suchen und werden voneinader gespaltet und in der Array 'recipeDataArray' gespeichert. 

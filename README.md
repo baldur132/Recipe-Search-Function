@@ -102,4 +102,10 @@ Alle SQL PDO Statements werden mit der 'executeQuery' Funktion ausgeführt, und 
 Ergebnissätze werden zusammengefasst in der Variable '$resultData' und diese wird endgültig as JSON objekt an das JavaScript
 wiedergegeben.
 
-**JavaScript:** Die zurückgegebene Daten von dem PHP script erlöst das Verarbeitungsprozess von den Daten. Das JSON object wird zunächst in einen String umgewandelt, und zuschließend mit der Methode '.parseJSON()' in eine JavaScript Arraz umgewandelt. Das erste Element im Array beinhaltet nur Metainformationen, und wird als solches von dem eigentlichen Ergebnissen getrennt und under der Variable 'metaInfo' gespeichert. Die restlichen Elemente halten die Ergebnissen von den mehreren Suchen und werden voneinader gespaltet und in der Array 'recipeDataArray' gespeichert. 
+**JavaScript:** Die zurückgegebene Daten von dem PHP script erlöst das Verarbeitungsprozess von den Daten. Das JSON object wird
+zunächst in einen String umgewandelt, und zuschließend mit der Methode '.parseJSON()' in eine JavaScript Arraz umgewandelt. Das
+erste Element im Array beinhaltet nur Metainformationen, und wird als solches von dem eigentlichen Ergebnissen getrennt und
+under der Variable 'metaInfo' gespeichert. Die restlichen Elemente halten die Ergebnissen von den mehreren Suchen und werden
+voneinader gespaltet und in der Array 'recipeDataArray' gespeichert. Anschliesend wird die Funktion 'displayResults' aufgerufen.
+
+***Display Results:*** 

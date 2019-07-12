@@ -73,4 +73,11 @@ die Sucheingabe in Untereinheiten basierend auf dem Schlüsselwort 'or', und ruf
 Unterfunktion 'parseColon', die von der UnterFunktion 'parseAnd' aufgerufen wird, werden die Abschnitte nach dem Inhalt von
 einem Doppenpunkt(:) geprüft. Wenn vorhanden, wird auch der Inhalt vor dem Doppelpunkt gegen einer Liste von gültigen Spalten
 geprüft, und wenn es als gültig erwiesen wird, wird die Spalte in der endgültigem SQL Query eingesetzt, sonst wird nur
-'RecipeTitle' stadessen eingesetzt. 
+'RecipeTitle' stadessen eingesetzt. Als letztes werden die einzelnen Schlüsselworter die mit Kommas(,) getrennt sind,
+auseinander genommen, und in einem Array speichert. Die komplette SQL Query und Schlüsselwortarray werden and die Hauptfunktion
+'searchFunction' zurückgegeben. 
+
+Eine Besonderheit von dieser Funktion steht darin, dass bis zum end die Leerzeichen komplett entfernt werden. Damit werden
+einfache Suchen wie 'coffee chili' auf 'coffeechili' verkurtzt. Um dieses Problem zu erheben, würde die Funktion
+'parseQuerySoft' eingesetzt. Diese Funktion wird nur aufgerufen, wenn die Sucheingabe Leerzeichen beinhaltet, und das 'Strict
+Parsing Only' Kästchen *nicht* markiert ist. 

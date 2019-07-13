@@ -11,7 +11,7 @@ Diese Rezeptesuchfunktion dient als Suchmaschine für eine persönliche Rezepted
 
 **'Spalte: Suchbegriff1, Suchbegriff2, ...'**
 
-*Kombination obiger Suchen mit ‚and‘ und ‚or‘ möglich*
+*Kombination obiger Suchen mit 'and' und 'or' möglich*
 
 # Optionen:
 Zwischen der Eingabezeile und dem 'Search' Knopf befindet sich ein Knopf der das Options Tray anzeigt. Die verschiedenen

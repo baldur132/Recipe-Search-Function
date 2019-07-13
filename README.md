@@ -4,7 +4,7 @@ Verbindung zu einer Datenbank mit den richtigen Spalten, damit sie auch richtig 
 nicht mit dem Code geliefert. 
 
 # Benutzung
-**Einfache Suchen:** Als einfache Suche kann man einfach Worter eingeben. Als default werden diese Worter nur im Rezeptetitel
+**Einfache Suchen:** Als einfache Suche kann man einfach Wörter eingeben. Als default werden diese Wörter nur im Rezeptetitel
 nachgeschlagen, und damit werden nur Rezepte zurückgegeben, die in ihrem Titel dieses Wort besitzen. Wenn mehrere Wörter
 eingegeben werden, und die Originalsuche keine Ergebnisse zurückbringt, wird die Suche vereinfacht und es werden nach den
 einzelnen Wörtern gesucht. ***Syntax: 'Wort1 Wort2 Wort3 ...'***. *Beispiel: 'Lime Bean Apple'*.
@@ -40,7 +40,7 @@ aus der Originaleingabe suchen. Wenn dieses Kästchen markiert ist, wird nur die
 vereinfache suchen.
 
 **Force Exact Search:** Suchbegriffe werden normal mit Wildcard-charakter umarmt, die dafür sorgen, dass auch Suchergebnisse
-gegeben werden, die Worter vor- und nach den Suchbegriff vorkommen. *Beispiel: für den Suchbegriff 'strawberry' gilt auch
+gegeben werden, die Wörter vor- und nach den Suchbegriff vorkommen. *Beispiel: für den Suchbegriff 'strawberry' gilt auch
 'strawberry cake' und 'sweet strawberry jam' aber nicht nur 'strawberry'*. Mit markierung von diesem Kästchen werden diese
 Charakter entfernt, und damit werden nur genaue Ergebnisse angezeigt.
 
@@ -60,8 +60,8 @@ das 'Carry Order Data' Kästchen markiert ist, die Sortierdaten interpretiert un
 ungültig ist wird eine Fehlermeldung angegeben und zurückgeschickt, sonst wird sie angenommen und für die Sortierung angewendet.
 Danach, wird die erste große Funktion aufgerufen, die die Sucheingabe manipuliert.
 
-***Parse Query Strict:*** Diese Funktion Teilt die Sucheingabe nach Sonderzeichen und Verbindungsworter auf, und bildet dadurch
-eine Array von Schlüsselworter und eine passende complexe SQL PDO Statement mit Parameter. Beinhaltet in diese Funktion sind
+***Parse Query Strict:*** Diese Funktion Teilt die Sucheingabe nach Sonderzeichen und Verbindungswörter auf, und bildet dadurch
+eine Array von Schlüsselwörter und eine passende complexe SQL PDO Statement mit Parameter. Beinhaltet in diese Funktion sind
 vier Unterfunktionen, die jeweils ein Element aus der Sucheingabe ausfindig machen, und damit auch eine hierachische
 Funktionsstruktur aufbauen. Die Sonderzeichen werden in einer bestimmten Reihenfolge aufgelöst: Zunächst mal wird die Eingabe
 nach dem Wort 'or' aufgeteilt, danach mit 'and', folgend mit ':', und zuletzt nach ','. Die erste Unterfunktion 'parseOr' teilt
@@ -70,7 +70,7 @@ die Sucheingabe in Untereinheiten basierend auf dem Schlüsselwort 'or', und ruf
 Unterfunktion 'parseColon', die von der UnterFunktion 'parseAnd' aufgerufen wird, werden die Abschnitte nach dem Inhalt von
 einem Doppenpunkt(:) geprüft. Wenn vorhanden, wird der Inhalt vor dem Doppelpunkt gegen einer Liste von gültigen Spalten
 geprüft, und wenn es als gültig erwiesen wird, wird die Spalte in der endgültigen SQL PDO Statement eingesetzt, sonst wird nur
-'RecipeTitle' stadessen eingesetzt. Als letztes werden die einzelnen Schlüsselworter die mit Kommas(,) getrennt sind,
+'RecipeTitle' stadessen eingesetzt. Als letztes werden die einzelnen Schlüsselwörter die mit Kommas(,) getrennt sind,
 auseinander genommen, und in einem Array speichert. Die komplette SQL PDO Statement und Schlüsselwortarray werden an die
 Hauptfunktion 'searchFunction' zurückgegeben. 
 
@@ -92,7 +92,7 @@ Nach der Verarbeitung von der Sucheingabe, und nachdem alle SQL PDO Statements g
 das PDO-Protokoll eine verbindung zu der 'siegel7_Recipes' Datenbank erstellt, mit den Benutzer und Passwort Daten in dem
 dbinfo.inc.php File sich befinden (hier nicht vorhanden). Direkt nach der Erstellung von der Verbindung wird die
 Buchstabencodierung von ASCII auf UTF-8 umgestellt, um Fehler mit Umlaute zu erheben. Der vorbereitete Statement wird mit hilfe
-der Sclüsselworterarray ergänzt (damit auch gleichzeitig vor SQL Injection attacks abgesichert) und dann ausgeführt. Die
+der Sclüsselwörterarray ergänzt (damit auch gleichzeitig vor SQL Injection attacks abgesichert) und dann ausgeführt. Die
 Suchergebnisse werden mit der PDO fetchAll Methode in der Variable '$data' geladen. Reihenweise werden die Ergebnisse ausgelesen
 und in der mehrschichtigen Array '$tableData' eingesetzt. Nachdem alle Ergebnisse sortiert geworden sind, wird die Array an der
 Hauptfunktion zurückgegeben.

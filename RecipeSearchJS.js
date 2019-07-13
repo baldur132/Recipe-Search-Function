@@ -5,7 +5,6 @@ let recipeDataArray = [];
 let searchBar = document.getElementById('searchBar');
 let chkbx0 = document.getElementById('strictParse');
 let chkbx1 = document.getElementById('forceExact');
-let chkbx2 = document.getElementById('carryOrderData');
 let orderData = 'RecipeTitle:ASC';
 let direction = ['DESC','ASC','ASC','ASC','ASC','DESC','ASC','DESC','DESC'];
 let columnTitle = ['RecipeTitle','Course','Source','MainIngredient','Region','DateCreated','Category','LastOnMenu','OnMenu'];
@@ -34,7 +33,7 @@ function updateURLParameter() {
 //Search JS
 function initiateSearch() {
     let text = searchBar.value;
-    parameters = [chkbx0.checked, chkbx1.checked, chkbx2.checked];
+    parameters = [chkbx0.checked, chkbx1.checked];
     searchDB(text, 'searchFunction');
     updateURLParameter();
     changeDisplay('optionPanel', 'hide');
@@ -132,13 +131,11 @@ function displayResults() {
         sErrorArea.appendChild(a);
     }
     //check for order errors and display if present
-    if (chkbx2.checked === true) {
-        if (metaInfo.orderError !== 'none') {
-            console.log('bad user order detected');
-            let a = document.createElement('div');
-            a.innerHTML = 'Invalid Order Data - Please Check Syntax or Uncheck "Carry Order Data" Checkbox --> ' + metaInfo.orderError;
-            sErrorArea.appendChild(a);
-        }
+    if (metaInfo.orderError !== 'none') {
+        console.log('bad user order detected');
+        let a = document.createElement('div');
+        a.innerHTML = 'Invalid Order Data - Please Check Syntax --> ' + metaInfo.orderError;
+        sErrorArea.appendChild(a);
     }
 
     //Primary Error Check and Display
@@ -178,6 +175,7 @@ function displayResults() {
     }
     //display
     if (pError === true) {errorArea.innerHTML = errorText;}
+
     //Table Generation and Display
     //generate table(s)
     if (allEmpty === false || generate === true) {

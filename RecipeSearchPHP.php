@@ -17,51 +17,50 @@ function searchFunction($userQuery, $orderData, $parameters){
     //Parameter Declaration
     $forceStrict = $parameters[0];
     $forceExact = $parameters[1];
-    $localOrder = $parameters[2];
 
     $validColumns = array('RecipeID', 'RecipeTitle', 'Course', 'URL', 'Source',
         'MainIngredient', 'Region', 'Category', 'DateCreated', 'LastOnMenu', 'OnMenu',
         'DateModified', 'Ingedients', 'IngredientsContinued', 'Instructions', 'Notes',
         'Servings', 'Special', 'Rating', 'PrepTime', 'CookTime', 'Wine', 'Language', 'NPictures');
-    if($localOrder === 'true'){
-        if(preg_match('#(;)#i', $userQuery)){
-            $explodeResults = preg_split('#(;)#i', $userQuery);
-            $userQuery = $explodeResults[0];
-            if(preg_match('#(:)#i', $explodeResults[1])){
-                $explodeRemnants = preg_split('#(:)#i', $explodeResults[1]);
-                $explodeRemnants[0] = trim($explodeRemnants[0]);
-                $explodeRemnants[1] = trim($explodeRemnants[1]);
-                if(in_array($explodeRemnants[0], $validColumns)){
-                    if($explodeRemnants[1] === 'DESC' || $explodeRemnants[1] === 'ASC') {
-                        $orderData = str_replace(' ', '', $explodeResults[1]);
-                        $resultData[0]['orderError'] = 'none';
-                    } else {
-                        $resultData[0]['orderError'] = 'Requested Sort Direction Invalid --> ' . $explodeRemnants[1];
-                        $orderData = 'RecipeTitle:ASC';
-                    }
+    if(preg_match('#(;)#i', $userQuery)){
+        $explodeResults = preg_split('#(;)#i', $userQuery);
+        $userQuery = $explodeResults[0];
+        if(preg_match('#(:)#i', $explodeResults[1])){
+            $explodeRemnants = preg_split('#(:)#i', $explodeResults[1]);
+            $explodeRemnants[0] = trim($explodeRemnants[0]);
+            $explodeRemnants[1] = strtoupper(trim($explodeRemnants[1]));
+            if(in_array($explodeRemnants[0], $validColumns)){
+                if($explodeRemnants[1] === 'DESC' || $explodeRemnants[1] === 'ASC') {
+                    $orderData = str_replace(' ', '', $explodeResults[1]);
+                    $resultData[0]['orderError'] = 'none';
                 } else {
-                    $resultData[0]['orderError'] = 'Requested Sort Column Invalid --> ' . $explodeRemnants[0];
+                    $resultData[0]['orderError'] = 'Requested Sort Direction Invalid --> ' . $explodeRemnants[1];
                     $orderData = 'RecipeTitle:ASC';
                 }
             } else {
-                $resultData[0]['orderError'] = 'Micro Order Separator Not Found --> ' . $explodeResults[1];
+                $resultData[0]['orderError'] = 'Requested Sort Column Invalid --> ' . $explodeRemnants[0];
                 $orderData = 'RecipeTitle:ASC';
             }
         } else {
-            $resultData[0]['orderError'] = 'Macro Order Separator Not Found';
+            $resultData[0]['orderError'] = 'Micro Order Separator Not Found, instead "' . $explodeResults[1] . '"';
             $orderData = 'RecipeTitle:ASC';
         }
+    } else {
+        $resultData[0]['orderError'] = 'none';
     }
 
     $parseData = parseQueryStrict($userQuery, $orderData);
     $statement = $parseData[0];
-    if($forceExact === 'true'){
-        $resultData[0]['Trim Exact'] = true;
-        $statement = str_replace('%', '', $statement);
-    }
     $columns = $parseData[1];
     $keywords = $parseData[2];
     $colError = $parseData[3];
+    //Removal of wildcard characters, if chosen
+    if($forceExact === 'true'){
+        $resultData[0]['Trim Exact'] = true;
+        for($i = 0; $i < count($keywords); $i++){
+            $keywords[$i] = str_replace('%', '', $keywords[$i]);
+        }
+    }
 
     $resultData[0]['Initial Query Parse'] = $statement;
     $resultData[0]['Initial Columns'] = $columns;

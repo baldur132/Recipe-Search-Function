@@ -1,19 +1,24 @@
 # Recipe-Search-Function
 Diese Rezeptesuchfunktion dient als Suchmaschine für eine persönliche Rezeptedatenbank. Eine Datenbank mit den Spalten wie in der Datei XXXXXX dargestellt wird benötigt damit die Suchfunktion benutzt werden kann. Diese Datenbank wird nicht mit dem Code geliefert. 
 
-#Übersicht Suchsyntax
+# Übersicht Suchsyntax
 
-Suchbegriff
-Suchbegriff1 Suchbegriff2 …
-Spalte: Suchbegriff
-Spalte: Suchbegriff1, Suchbegriff2, …
-Kombination obiger Suchen mit ‚and‘ und ‚or‘ möglich
+**'Suchbegriff'**
 
-#Optionen:
-Strict Parsing Only
-Force Exact Search
-Carry Order Data
-Sortierung der Suchergebnisse
+**'Suchbegriff1 Suchbegriff2 …'**
+
+**'Spalte: Suchbegriff'**
+
+**'Spalte: Suchbegriff1, Suchbegriff2, …'**
+
+*Kombination obiger Suchen mit ‚and‘ und ‚or‘ möglich*
+
+# Optionen:
+**Strict Parsing Only:** 
+
+**Force Exact Search:**
+
+**Sortierung der Suchergebnisse:**
 
 # Benutzung
 **Einfache Suchen:** Als einfache Suche kann man einfach Wörter eingeben. Als Default werden diese Wörter nur im Rezeptetitel
@@ -31,7 +36,11 @@ in einer Spalte gleichzeitig nach mehreren Wörtern suchen, ohne die Spalte mehr
 Suchwort2, Suchwort3 ...'***. *Beispiel: 'Ingedients: carrot, celery, onion'*. Mit dieser Suche bekommt man Rezepte, die als
 Zutat (Spalte 'Ingedients') 'carrot', 'celery' und 'onion' haben. 
 
-**Zeichen Strichpunkt(;):** Ein Strichpunkt gehört in der Suche ans Ende der Eingabe, und wird benutzt, um eine spezielle Sortierung von Rezepten zu erreichen. Dafür muss auch das Kästchen 'Carry Order Data' markiert sein (die mehreren Kästchen und ihre Funktionen werden unter 'Zusätzliche Parameter' erfasst). ***Syntax: 'Suche; Sortierspalte:[ASC/DESC]'***. *Beispiel: 'RecipeTitle: orange;NPictures:DESC'*. Hier wird zuerst nach Rezepte die in ihrem Titel das Wort 'orange' haben gesucht, aber danach wird auch die Sortierreihenfolge bestimmt. In dem Fall wird nach der Anzahl von Bildern gesucht die das Rezept besitzt (Spalte 'NPictures'), und in absteigender Reihenfolge (DESC). 
+**Zeichen Strichpunkt(;):** Ein Strichpunkt gehört in der Suche ans Ende der Eingabe, und wird benutzt, um eine spezielle
+Sortierung von Rezepten zu erreichen. ***Syntax: 'Suche; Sortierspalte:[ASC/DESC]'***. *Beispiel: 'RecipeTitle:
+orange;NPictures:DESC'*. Hier wird zuerst nach Rezepte die in ihrem Titel das Wort 'orange' haben gesucht, aber danach wird auch
+die Sortierreihenfolge bestimmt. In dem Fall wird nach der Anzahl von Bildern gesucht die das Rezept besitzt (Spalte
+'NPictures'), und in absteigender Reihenfolge (DESC). 
 
 **Verbindungswort 'and':** Das Wort 'and' kann benutzt werden, um mehrere Suchen zu verbinden. ***Syntax: 'Suche1 and Suche2
 and Suche3 ...'***. *Beispiel: 'RecipeTitle: fruit and Ingedients: berry'*. Diese Beispielsuche ergibt nur Rezepte, die in ihrem
@@ -55,7 +64,9 @@ gegeben werden, die Wörter vor- und nach den Suchbegriff vorkommen. *Beispiel: 
 Charakter entfernt, und damit werden nur genaue Ergebnisse angezeigt.
 
 **Carry Order Data:** Die Funktion von diesem Kästchen, in Zusammenhang mit der Funktion vom Strickpunkt, wurde vorhin unter
-*'Zeichen Strichpunkt (;)'* erwähnt. Kurzgesagt, dieses Kästchen erlaubt den Benutzer eine bestimmte Sortierreihenfolge angeben zu können. Diese Reihenfolge wird nach der Sucheingabe hinter einem Strichpunkt geschrieben. *Beispiel: 'carrot;Source:ASC'*. Diese Suche nach 'carrot' wird nach der 'Source' Spalte in aufsteigender Reihenfolge sortiert.
+*'Zeichen Strichpunkt (;)'* erwähnt. Kurzgesagt, dieses Kästchen erlaubt den Benutzer eine bestimmte Sortierreihenfolge angeben
+zu können. Diese Reihenfolge wird nach der Sucheingabe hinter einem Strichpunkt geschrieben. *Beispiel: 'carrot;Source:ASC'*.
+Diese Suche nach 'carrot' wird nach der 'Source' Spalte in aufsteigender Reihenfolge sortiert.
 
 # Erläuterung vom Suchprozess
 **Nach dem drücken vom 'search' Knopf**

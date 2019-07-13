@@ -62,9 +62,11 @@ durchgeführt, und die sortierten Daten werden wiedergegeben. Um nach bosondere 
 Strichpunkt(;) nötig:
 
 **Zeichen Strichpunkt(;):** Ein Strichpunkt gehört in der Suche ans Ende der Eingabe, und wird benutzt, um eine spezielle
-Sortierung von Rezepten zu erreichen. ***Syntax: 'Suche; Sortierspalte:[ASC/DESC]'***. *Beispiel: 'RecipeTitle:
-orange;NPictures:DESC'*. ***ERKLÄREN ASC UND DESC*** Hier wird zuerst nach Rezepte die in ihrem Titel das Wort 'orange' haben
-gesucht, aber danach wird auch die Sortierreihenfolge bestimmt. In dem Fall wird nach der Anzahl von Bildern die das Rezept
+Sortierung von Rezepten zu erreichen. ***Syntax: 'Suche; Sortierspalte:[ASC/DESC]'***. *Beispiel: 'RecipeTitle: orange;
+NPictures:DESC'*. Die Abkürzungen 'ASC' und 'DESC' stehen für die Wörter 'ascending' und 'descending', die übersetzt
+aufsteigend und absteigend bedeuten. Diese Abkürzungen werden benutzt um die Richtung der Reihenfolge zu bestimmen, entweder
+aufsteigend oder absteigend. In diesem Beispiel wird zuerst nach Rezepte die in ihrem Titel das Wort 'orange' haben gesucht,
+aber danach wird auch die Sortierreihenfolge bestimmt. In dem Fall wird nach der Anzahl von Bildern die das Rezept
 besitzt (Spalte 'NPictures'), und in absteigender Reihenfolge (DESC) geordnet. 
 
 # Beschreibung des Suchprozesses

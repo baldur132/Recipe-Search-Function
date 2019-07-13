@@ -52,7 +52,7 @@ Suche2 or Suche3 ...'***. *Beispiel: 'Ingedients: flour or Ingedients: corn'*. U
 'flour' *oder* 'corn' haben.
 
 # Sortierung von Suchergebnisse
-Einfache und schnelle Sortierung von den Ergebnissen kann man durch anclicken vom Tabellenkopf auf der gewünschten
+Einfache und schnelle Sortierung von den Ergebnissen kann man durch Anclicken vom Tabellenkopf auf der gewünschten
 Sortierspalte. Dadurch wird eine zweite identische Suche ausgeführt, und die sortierten Daten werden wiedergegeben. Um nach
 bosondere Spalten zu sortiern ist die anwendung von einem Strichpunkt(;) nötig:
 

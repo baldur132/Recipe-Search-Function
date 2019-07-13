@@ -1,25 +1,25 @@
 Benötigte Spalten:
-'RecipeID' 
-'RecipeTitle'
-'Course'
-'URL'
-'Source'
-'MainIngredient'
-'Region'
-'Category'
-'DateCreated'
-'LastOnMenu'
-'OnMenu'
-'DateModified'
-'Ingedients'
-'IngredientsContinued'
-'Instructions'
-'Notes'
-'Servings'
-'Special'
-'Rating'
-'PrepTime'
-'CookTime'
-'Wine'
-'Language'
-'NPictures'
+`Category` --> text 
+`DateCreated` --> date 
+`DateModified` --> date 
+`Ingedients` --> text 
+`Instructions` --> text 
+`Notes` --> text 
+`Servings` --> tinyint(4) 
+`RecipeID` --> int(11)
+`RecipeTitle` --> tinytext 
+`MainIngredient` --> tinytext 
+`Region` --> tinytext 
+`Course` --> tinytext 
+`Source` --> tinytext 
+`Special` --> tinytext 
+`Rating` --> tinytext 
+`PrepTime` --> time 
+`CookTime` --> time 
+`Wine` --> tinytext 
+`Language` --> tinytext 
+`IngredientsContinued` --> text 
+`URL` --> text 
+`OnMenu` --> smallint(4)
+`NPictures` --> tinyint(4) 
+`LastOnMenu` --> date 

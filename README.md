@@ -5,52 +5,15 @@ Diese Rezeptesuchfunktion dient als Suchmaschine für eine persönliche Rezepted
 
 **'Suchbegriff'**
 
-**'Suchbegriff1 Suchbegriff2 …'**
+**'Suchbegriff1 Suchbegriff2 ...'**
 
 **'Spalte: Suchbegriff'**
 
-**'Spalte: Suchbegriff1, Suchbegriff2, …'**
+**'Spalte: Suchbegriff1, Suchbegriff2, ...'**
 
 *Kombination obiger Suchen mit ‚and‘ und ‚or‘ möglich*
 
 # Optionen:
-**Strict Parsing Only:** 
-
-**Force Exact Search:**
-
-**Sortierung der Suchergebnisse:**
-
-# Benutzung
-**Einfache Suchen:** Als einfache Suche kann man einfach Wörter eingeben. Als Default werden diese Wörter nur im Rezeptetitel
-nachgeschlagen, und damit werden nur Rezepte gefunden, die im Titel dieses Wort beinhalten. Wenn mehrere Wörter
-eingegeben werden, und die Originalsuche keine Ergebnisse liefert, wird die Suche vereinfacht und es wird nach den
-einzelnen Wörtern gesucht. ***Syntax: 'Wort1 Wort2 Wort3 ...'***. *Beispiel: 'Lime Bean Apple'*.
-
-Als Präzisierung einer normalen Suche kann man mit bestimmten Sonderzeichen seine Eingabe genauer formulieren. Dazu gehören die Zeichen ':', ',' und ';', sowie die Wörter 'and' und 'or'. 
-
-**Zeichen Doppelpunkt(:):** Mit einem Doppelpunkt kann man in einer bestimmten Spalte nach einem Wort suchen. ***Syntax:
-'Spalte: Suchwort'***. *Beispiel: 'Source: German'*. Diese Eingabe wird Rezepte finden, die in der Spalte 'Source' den Text 'German' enthalten.
-
-**Zeichen Komma(,):** Ein Komma trennt mehrere Wörter die alle in einer bestimmten Spalte enthalten sein sollen. Damit kann man
-in einer Spalte gleichzeitig nach mehreren Wörtern suchen, ohne die Spalte mehrmals anzugeben. ***Syntax: 'Spalte: Suchwort1,
-Suchwort2, Suchwort3 ...'***. *Beispiel: 'Ingedients: carrot, celery, onion'*. Mit dieser Suche bekommt man Rezepte, die als
-Zutat (Spalte 'Ingedients') 'carrot', 'celery' und 'onion' haben. 
-
-**Zeichen Strichpunkt(;):** Ein Strichpunkt gehört in der Suche ans Ende der Eingabe, und wird benutzt, um eine spezielle
-Sortierung von Rezepten zu erreichen. ***Syntax: 'Suche; Sortierspalte:[ASC/DESC]'***. *Beispiel: 'RecipeTitle:
-orange;NPictures:DESC'*. Hier wird zuerst nach Rezepte die in ihrem Titel das Wort 'orange' haben gesucht, aber danach wird auch
-die Sortierreihenfolge bestimmt. In dem Fall wird nach der Anzahl von Bildern gesucht die das Rezept besitzt (Spalte
-'NPictures'), und in absteigender Reihenfolge (DESC). 
-
-**Verbindungswort 'and':** Das Wort 'and' kann benutzt werden, um mehrere Suchen zu verbinden. ***Syntax: 'Suche1 and Suche2
-and Suche3 ...'***. *Beispiel: 'RecipeTitle: fruit and Ingedients: berry'*. Diese Beispielsuche ergibt nur Rezepte, die in ihrem
-Titel das Wort 'fruit' haben, *und* auch als Zutat (Spalte 'Ingedients') 'berry' haben.
-
-**Verbindungswort 'or':** Das Wort 'or' lässt einen eine neue Suchreihe in derselben Suche aufstellen. ***Syntax: 'Suche1 or
-Suche2 or Suche3 ...'***. *Beispiel: 'Ingedients: flour or Ingedients: corn'*. Unter diese Suche sind Rezepte die als Zutat
-'flour' *oder* 'corn' haben.
-
-# Zusätzliche Parameter (Optionen)
 Zwischen der Eingabezeile und dem 'Search' Knopf befindet sich ein Knopf der das Options Tray anzeigt. Die verschiedenen
 Parameter können selektiert werden, um spezielle Suchen durchzuführen:
 
@@ -63,10 +26,41 @@ gegeben werden, die Wörter vor- und nach den Suchbegriff vorkommen. *Beispiel: 
 'strawberry cake' und 'sweet strawberry jam' aber nicht nur 'strawberry'*. Mit Markierung von diesem Kästchen werden diese
 Charakter entfernt, und damit werden nur genaue Ergebnisse angezeigt.
 
-**Carry Order Data:** Die Funktion von diesem Kästchen, in Zusammenhang mit der Funktion vom Strickpunkt, wurde vorhin unter
-*'Zeichen Strichpunkt (;)'* erwähnt. Kurzgesagt, dieses Kästchen erlaubt den Benutzer eine bestimmte Sortierreihenfolge angeben
-zu können. Diese Reihenfolge wird nach der Sucheingabe hinter einem Strichpunkt geschrieben. *Beispiel: 'carrot;Source:ASC'*.
-Diese Suche nach 'carrot' wird nach der 'Source' Spalte in aufsteigender Reihenfolge sortiert.
+# Benutzung
+**Einfache Suchen:** Als einfache Suche kann man einfach Wörter eingeben. Als Default werden diese Wörter nur im Rezeptetitel
+nachgeschlagen, und damit werden nur Rezepte gefunden, die im Titel dieses Wort beinhalten. Wenn mehrere Wörter
+eingegeben werden, und die Originalsuche keine Ergebnisse liefert, wird die Suche vereinfacht und es wird nach den
+einzelnen Wörtern gesucht. ***Syntax: 'Wort1 Wort2 Wort3 ...'***. *Beispiel: 'Lime Bean Apple'*.
+
+Als Präzisierung einer normalen Suche kann man mit bestimmten Sonderzeichen seine Eingabe genauer formulieren. Dazu gehören die
+Zeichen ':', ',' und ';', sowie die Wörter 'and' und 'or'. 
+
+**Zeichen Doppelpunkt(:):** Mit einem Doppelpunkt kann man in einer bestimmten Spalte nach einem Wort suchen. ***Syntax:
+'Spalte: Suchwort'***. *Beispiel: 'Source: German'*. Diese Eingabe wird Rezepte finden, die in der Spalte 'Source' den Text 'German' enthalten.
+
+**Zeichen Komma(,):** Ein Komma trennt mehrere Wörter die alle in einer bestimmten Spalte enthalten sein sollen. Damit kann man
+in einer Spalte gleichzeitig nach mehreren Wörtern suchen, ohne die Spalte mehrmals anzugeben. ***Syntax: 'Spalte: Suchwort1,
+Suchwort2, Suchwort3 ...'***. *Beispiel: 'Ingedients: carrot, celery, onion'*. Mit dieser Suche bekommt man Rezepte, die als
+Zutat (Spalte 'Ingedients') 'carrot', 'celery' und 'onion' haben. 
+
+**Verbindungswort 'and':** Das Wort 'and' kann benutzt werden, um mehrere Suchen zu verbinden. ***Syntax: 'Suche1 and Suche2
+and Suche3 ...'***. *Beispiel: 'RecipeTitle: fruit and Ingedients: berry'*. Diese Beispielsuche ergibt nur Rezepte, die in ihrem
+Titel das Wort 'fruit' haben, *und* auch als Zutat (Spalte 'Ingedients') 'berry' haben.
+
+**Verbindungswort 'or':** Das Wort 'or' lässt einen eine neue Suchreihe in derselben Suche aufstellen. ***Syntax: 'Suche1 or
+Suche2 or Suche3 ...'***. *Beispiel: 'Ingedients: flour or Ingedients: corn'*. Unter diese Suche sind Rezepte die als Zutat
+'flour' *oder* 'corn' haben.
+
+# Sortierung von Suchergebnisse
+Einfache und schnelle Sortierung von den Ergebnissen kann man durch anclicken vom Tabellenkopf auf der gewünschten
+Sortierspalte. Dadurch wird eine zweite identische Suche ausgeführt, und die sortierten Daten werden wiedergegeben. Um nach
+bosondere Spalten zu sortiern ist die anwendung von einem Strichpunkt(;) nötig:
+
+**Zeichen Strichpunkt(;):** Ein Strichpunkt gehört in der Suche ans Ende der Eingabe, und wird benutzt, um eine spezielle
+Sortierung von Rezepten zu erreichen. ***Syntax: 'Suche; Sortierspalte:[ASC/DESC]'***. *Beispiel: 'RecipeTitle:
+orange;NPictures:DESC'*. Hier wird zuerst nach Rezepte die in ihrem Titel das Wort 'orange' haben gesucht, aber danach wird auch
+die Sortierreihenfolge bestimmt. In dem Fall wird nach der Anzahl von Bildern die das Rezept besitzt (Spalte
+'NPictures'), und in absteigender Reihenfolge (DESC) geordnet. 
 
 # Erläuterung vom Suchprozess
 **Nach dem drücken vom 'search' Knopf**
@@ -126,7 +120,8 @@ wiedergegeben.
 zunächst in einen String umgewandelt, und zuschließend mit der Methode 'JSON.parse()' in eine JavaScript Array umgewandelt. Das
 erste Element im Array beinhaltet nur Metainformationen, und wird als solches von dem eigentlichen Ergebnissen getrennt und
 unter der Variable 'metaInfo' gespeichert. Die restlichen Elemente halten die Ergebnissen von den mehreren Suchen und werden
-voneinander gespaltet und in der Array 'recipeDataArray' gespeichert. Anschließend wird die Funktion 'displayResults' aufgerufen.
+voneinander gespaltet und in der Array 'recipeDataArray' gespeichert. Anschließend wird die Funktion 'displayResults'
+aufgerufen.
 
 ***Display Results:*** Aufgabe dieser Funktion ist, die vom PHP angekommenen Daten zu verarbeiten und eine HTML Tabelle zu
 erzeugen. Als erstes werden alte Fehlermeldungen und Tabellen von dem Bildschirm entfernt. Neue Fehlermeldungen (wenn vorhanden)

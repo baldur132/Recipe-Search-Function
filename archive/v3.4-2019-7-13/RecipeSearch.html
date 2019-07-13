@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" content="text/html" http-equiv="content-type"/>
+    <meta content="your description goes here" name="description"/>
+    <meta name="keywords" content="Recipe Database Search" />
+    <meta name="author" content="Baldur Siegel" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link type="text/css" rel="stylesheet" href="RDB.css" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <title>Recipe Database Search</title>
+</head>
+<body>
+<div class="container">
+    <div class="siteTitle">
+        <h1>Siegel Recipes</h1>
+        <h2>Search Input</h2>
+    </div>
+    <div class="menu">
+        <div class="menuIcon" id="menuIcon">
+            <div class="menuIconLine menuIconT"></div>
+            <div class="menuIconLine menuIconM"></div>
+            <div class="menuIconLine menuIconB"></div>
+        </div>
+        <div class="menuExtended" id="menuExtended">
+            <a href="RecipeList.php">List All</a>
+            <div class="dropdown">
+                <button id="navDrop">Navigation</button>
+                <div class="dropContent">
+                    <a href="../Cooking.php">Home</a>
+                    <a href="../MenuDB/DisplayMenuWeek.php">Menu</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="search">
+            <h2 id="searchHeader">Recipe Database Search</h2>
+            <div class="searchInputs">
+                <img class="loadIcon hidden" id="loadIcon" src="RecipePictures/loading.gif" alt="ldg...">
+                <div class="autocompleteWrapper"><input type="text" class="searchBar" id="searchBar" name="searchBar"><label for="searchBar"></label></div><button class="sButton1 TBborder" onclick="hideOptions()">^</button><button class="sButton2" id="search" onclick="initiateSearch()">Search</button>
+            </div>
+            <div class="optionPanel hidden" id="optionPanel">
+                <label class="checkContainer"><input type="checkbox" name="searchParameter" class="optionCheck" id="strictParse"><span class="checkbox"></span></label>Strict Parsing Only
+                <label class="checkContainer"><input type="checkbox" name="searchParameter" class="optionCheck" id="forceExact"><span class="checkbox"></span></label>Force Exact Search
+            </div>
+        </div>
+        <div class="searchInfo">
+            <div class="searchError" id="searchError"></div>
+            <div class="hidden" id="searchData">
+                <h5>Displaying <span id="resultNum"></span> Recipes:</h5>
+            </div>
+        </div>
+        <div class="primaryError"><h3 id="displayError"></h3></div>
+        <div class="results" id="results"></div>
+    </div>
+</div>
+<script src="../js/jquery-3.1.1.js"></script>
+<script src="RecipeSearchJS.js"></script>
+<script>
+    function displayMiniMenu() {
+        let menu = document.getElementById('menuExtended');
+        (menu.style.display === 'flex' ? menu.style.display = 'none' : menu.style.display = 'flex');
+        menu.classList.toggle('miniMenu');
+        menu.classList.toggle('fadeIn');
+        this.classList.toggle('change');
+    }
+    document.getElementById('menuIcon').addEventListener('click', displayMiniMenu, false);
+    window.onkeypress = function(event) {if (event.key === 'Enter') {document.getElementById('search').click();}};
+    $('document').ready(function(){
+        autocomplete(document.getElementById('searchBar'), food);
+        document.getElementById('searchBar').focus();
+        document.getElementById('searchHeader').classList.add('searchHeaderLarge');
+        readURLnUpdate();
+    });
+</script>
+</body>
+</html>

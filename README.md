@@ -1,5 +1,5 @@
 # Recipe-Search-Function
-Diese Rezeptesuchfunktion dient als Suchmaschine für eine persönliche Rezeptedatenbank. Eine Datenbank mit den Spalten wie in der Datei XXXXXX dargestellt wird benötigt damit die Suchfunktion benutzt werden kann. Diese Datenbank wird nicht mit dem Code geliefert. 
+Diese Rezeptesuchfunktion dient als Suchmaschine für eine persönliche Rezeptedatenbank. Eine Datenbank mit den Spalten wie in der Datei 'Spalten.txt' dargestellt wird benötigt damit die Suchfunktion benutzt werden kann. Diese Datenbank wird nicht mit dem Code geliefert. 
 
 # Übersicht Suchsyntax
 
